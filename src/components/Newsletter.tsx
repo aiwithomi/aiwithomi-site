@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSubscribe } from '@workspace/api-client-react';
+import { useSubscribe } from '../lib/api-stub';
 
 export function Newsletter() {
   const [email, setEmail] = useState('');

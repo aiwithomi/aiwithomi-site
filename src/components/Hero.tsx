@@ -1,6 +1,6 @@
 import { useId, useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
-import { useGetSubscriberCount } from '@workspace/api-client-react';
+import { useGetSubscriberCount } from '../lib/api-stub';
 
 function DotGrid({ id }: { id: string }) {
   return (
