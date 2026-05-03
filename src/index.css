@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-ember: #C4622D;
+  --color-parchment: #F5F0E8;
+  --color-deep-parch: #EDE7DC;
+  --color-obsidian: #1A1A1A;
+  --color-ash: #6B6560;
+
+  --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans: 'Space Grotesk', 'Helvetica Neue', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-pill: 100px;
+}
+
+:root {
+  --ember:      #C4622D;
+  --parchment:  #F5F0E8;
+  --deep-parch: #EDE7DC;
+  --obsidian:   #1A1A1A;
+  --ash:        #6B6560;
+
+  --background: 43 33% 93%; /* parchment */
+  --foreground: 0 0% 10%; /* obsidian */
+  --border: 0 0% 80%;
+  --card: 43 33% 93%;
+  --card-foreground: 0 0% 10%;
+  
+  --popover: 43 33% 93%;
+  --popover-foreground: 0 0% 10%;
+  --primary: 21 64% 47%; /* ember */
+  --primary-foreground: 43 33% 93%;
+  --secondary: 41 27% 89%; /* deep-parch */
+  --secondary-foreground: 0 0% 10%;
+  --muted: 41 27% 89%;
+  --muted-foreground: 29 5% 39%; /* ash */
+  --accent: 41 27% 89%;
+  --accent-foreground: 0 0% 10%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 0 0% 80%;
+  --ring: 21 64% 47%;
+  
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 0 0% 10%; /* obsidian */
+  --foreground: 43 33% 93%; /* parchment */
+  --border: 0 0% 20%;
+  --card: 0 0% 10%;
+  --card-foreground: 43 33% 93%;
+  --popover: 0 0% 10%;
+  --popover-foreground: 43 33% 93%;
+  --primary: 21 64% 47%;
+  --primary-foreground: 43 33% 93%;
+  --secondary: 0 0% 20%;
+  --secondary-foreground: 43 33% 93%;
+  --muted: 0 0% 20%;
+  --muted-foreground: 29 5% 60%;
+  --accent: 0 0% 20%;
+  --accent-foreground: 43 33% 93%;
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 43 33% 93%;
+  --input: 0 0% 20%;
+  --ring: 21 64% 47%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip; /* clip not hidden — doesn't create a scroll container, GSAP-safe */
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    overflow-x: clip;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
