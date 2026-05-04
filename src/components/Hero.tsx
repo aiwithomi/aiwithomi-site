@@ -125,7 +125,7 @@ export function Hero() {
     <section
       ref={heroRef}
       className="relative w-full bg-obsidian overflow-hidden"
-      style={{ minHeight: '100svh', display: 'flex', flexDirection: 'column' }}
+      style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
     >
       <DotGrid id={patternId} />
 

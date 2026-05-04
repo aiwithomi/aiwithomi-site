@@ -100,7 +100,7 @@ export function Nav() {
         style={{ background: 'linear-gradient(90deg, #C4622D 0%, rgba(196,98,45,0.35) 35%, transparent 70%)' }}
       />
 
-      <div className="flex items-center justify-between px-8 py-[17px]">
+      <div className="flex items-center justify-between px-[clamp(20px,5vw,80px)] py-[17px]">
         <div className="flex items-center gap-6">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

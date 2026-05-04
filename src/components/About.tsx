@@ -69,27 +69,26 @@ export function About() {
       ref={sectionRef}
       id="about"
       style={{
-        height: '100vh',
+        minHeight: '100vh',
         display: 'flex',
-        overflow: 'hidden',
+        flexDirection: 'column',
       }}
     >
       {/* LEFT — Parchment / Text */}
       <div
         style={{
-          width: '45%',
-          height: '100%',
+          width: '100%',
+          minHeight: '50vh',
           background: '#F5F0E8',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          paddingTop: 80,
-          paddingBottom: 80,
-          paddingLeft: 'clamp(28px, 6vw, 96px)',
-          paddingRight: 'clamp(20px, 3vw, 56px)',
+          paddingTop: 60,
+          paddingBottom: 60,
+          paddingLeft: 'clamp(28px, 5vw, 96px)',
+          paddingRight: 'clamp(28px, 5vw, 56px)',
           position: 'relative',
           zIndex: 2,
-          overflowY: 'auto',
         }}
       >
         <div style={{ overflow: 'hidden', paddingBottom: 6 }}>
@@ -221,8 +220,8 @@ export function About() {
       {/* RIGHT — Ember / Photo */}
       <div
         style={{
-          width: '55%',
-          height: '100%',
+          width: '100%',
+          minHeight: '60vh',
           position: 'relative',
           overflow: 'hidden',
           background: '#C4622D',
@@ -247,7 +246,7 @@ export function About() {
             style={{
               width: '100%',
               height: '100%',
-              objectFit: 'contain',
+              objectFit: 'cover',
               objectPosition: 'center top',
               display: 'block',
               userSelect: 'none',
