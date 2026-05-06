@@ -68,233 +68,463 @@ export function About() {
     <section
       ref={sectionRef}
       id="about"
+      className="relative w-full"
       style={{
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
       }}
     >
-      {/* LEFT — Parchment / Text */}
-      <div
-        style={{
-          width: '100%',
-          minHeight: '50vh',
-          background: '#F5F0E8',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          paddingTop: 60,
-          paddingBottom: 60,
-          paddingLeft: 'clamp(28px, 5vw, 96px)',
-          paddingRight: 'clamp(28px, 5vw, 56px)',
-          position: 'relative',
-          zIndex: 2,
-        }}
-      >
-        <div style={{ overflow: 'hidden', paddingBottom: 6 }}>
-          <div
-            className="about-l1 font-serif font-light text-obsidian"
-            style={{
-              fontSize: 'clamp(44px, 6.5vw, 96px)',
-              lineHeight: 1.0,
-              letterSpacing: '-0.025em',
-            }}
-          >
-            Hi.
-          </div>
-        </div>
-
+      {/* Desktop: Side-by-side layout */}
+      <div className="hidden md:flex w-full h-full" style={{ minHeight: '100vh' }}>
+        {/* LEFT — Parchment / Text */}
         <div
           style={{
-            overflow: 'hidden',
-            paddingBottom: 6,
-            marginBottom: 'clamp(20px, 3vw, 36px)',
-          }}
-        >
-          <div
-            className="about-l2 font-serif font-light text-obsidian"
-            style={{
-              fontSize: 'clamp(44px, 6.5vw, 96px)',
-              lineHeight: 1.05,
-              letterSpacing: '-0.025em',
-            }}
-          >
-            I am{' '}
-            <em style={{ color: '#C4622D', fontStyle: 'italic' }}>Omi</em>.
-          </div>
-        </div>
-
-        <div
-          style={{
+            width: '45%',
+            height: '100%',
+            background: '#F5F0E8',
             display: 'flex',
             flexDirection: 'column',
-            gap: 'clamp(12px, 1.6vw, 20px)',
-            maxWidth: '44ch',
+            justifyContent: 'center',
+            paddingTop: 80,
+            paddingBottom: 80,
+            paddingLeft: 'clamp(28px, 6vw, 96px)',
+            paddingRight: 'clamp(20px, 3vw, 56px)',
+            position: 'relative',
+            zIndex: 2,
+            overflowY: 'auto',
           }}
         >
-          <p
-            className="font-sans"
-            style={{
-              fontSize: 'clamp(13px, 1.2vw, 16px)',
-              lineHeight: 1.72,
-              color: 'rgba(26,26,26,0.7)',
-            }}
-          >
-            I work in healthcare data and AI in Australia, and I am pursuing a PhD in artificial intelligence for mental healthcare. Everything I do returns to a single question: can a model be trusted with a clinical decision, and if so, on what grounds?
-          </p>
-          <p
-            className="font-sans"
-            style={{
-              fontSize: 'clamp(13px, 1.2vw, 16px)',
-              lineHeight: 1.72,
-              color: 'rgba(26,26,26,0.7)',
-            }}
-          >
-            The challenge does not stop at the clinic door. Increasingly, people in distress are turning to large language models for mental health support, tools that are articulate, always available, and entirely unregulated as therapeutic aids. These systems were not designed to hold that role, yet they do. When their responses are untethered from clinical frameworks, the consequences can be irreversible. The 2024 lawsuit filed by the parents of a 17-year-old in California against OpenAI is one of the more visible cases in a pattern that researchers and clinicians are only beginning to account for.
-          </p>
-          <p
-            className="font-sans"
-            style={{
-              fontSize: 'clamp(13px, 1.2vw, 16px)',
-              lineHeight: 1.72,
-              color: 'rgba(26,26,26,0.7)',
-            }}
-          >
-            The core problem is not the absence of guardrails, though more rigorous constraints are warranted. It is that nobody, including the engineers who built these systems, can fully account for how a large language model reasons, what it prioritises, or where its logic fails. That opacity is the black box. Making it interpretable, auditable, and safe enough to meet the standards of clinical practice is the work my research is committed to. I believe it is among the most consequential problems in technology today.
-          </p>
+          <div style={{ overflow: 'hidden', paddingBottom: 6 }}>
+            <div
+              className="about-l1 font-serif font-light text-obsidian"
+              style={{
+                fontSize: 'clamp(44px, 6.5vw, 96px)',
+                lineHeight: 1.0,
+                letterSpacing: '-0.025em',
+              }}
+            >
+              Hi.
+            </div>
+          </div>
 
-          {/* Collaboration invitation */}
           <div
             style={{
-              marginTop: 4,
-              paddingLeft: 14,
-              borderLeft: '2px solid #C4622D',
+              overflow: 'hidden',
+              paddingBottom: 6,
+              marginBottom: 'clamp(20px, 3vw, 36px)',
+            }}
+          >
+            <div
+              className="about-l2 font-serif font-light text-obsidian"
+              style={{
+                fontSize: 'clamp(44px, 6.5vw, 96px)',
+                lineHeight: 1.05,
+                letterSpacing: '-0.025em',
+              }}
+            >
+              I am{' '}
+              <em style={{ color: '#C4622D', fontStyle: 'italic' }}>Omi</em>.
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'clamp(12px, 1.6vw, 20px)',
+              maxWidth: '44ch',
             }}
           >
             <p
-              className="font-serif italic font-light"
+              className="font-sans"
               style={{
-                fontSize: 'clamp(14px, 1.2vw, 17px)',
-                lineHeight: 1.65,
-                color: 'rgba(26,26,26,0.6)',
+                fontSize: 'clamp(13px, 1.2vw, 16px)',
+                lineHeight: 1.72,
+                color: 'rgba(26,26,26,0.7)',
               }}
             >
-              Follow along for the journey. If the work resonates, reach out and collaborate.
+              I work in healthcare data and AI in Australia, and I am pursuing a PhD in artificial intelligence for mental healthcare. Everything I do returns to a single question: can a model be trusted with a clinical decision, and if so, on what grounds?
             </p>
+            <p
+              className="font-sans"
+              style={{
+                fontSize: 'clamp(13px, 1.2vw, 16px)',
+                lineHeight: 1.72,
+                color: 'rgba(26,26,26,0.7)',
+              }}
+            >
+              The challenge does not stop at the clinic door. Increasingly, people in distress are turning to large language models for mental health support, tools that are articulate, always available, and entirely unregulated as therapeutic aids. These systems were not designed to hold that role, yet they do. When their responses are untethered from clinical frameworks, the consequences can be irreversible. The 2024 lawsuit filed by the parents of a 17-year-old in California against OpenAI is one of the more visible cases in a pattern that researchers and clinicians are only beginning to account for.
+            </p>
+            <p
+              className="font-sans"
+              style={{
+                fontSize: 'clamp(13px, 1.2vw, 16px)',
+                lineHeight: 1.72,
+                color: 'rgba(26,26,26,0.7)',
+              }}
+            >
+              The core problem is not the absence of guardrails, though more rigorous constraints are warranted. It is that nobody, including the engineers who built these systems, can fully account for how a large language model reasons, what it prioritises, or where its logic fails. That opacity is the black box. Making it interpretable, auditable, and safe enough to meet the standards of clinical practice is the work my research is committed to. I believe it is among the most consequential problems in technology today.
+            </p>
+
+            {/* Collaboration invitation */}
+            <div
+              style={{
+                marginTop: 4,
+                paddingLeft: 14,
+                borderLeft: '2px solid #C4622D',
+              }}
+            >
+              <p
+                className="font-serif italic font-light"
+                style={{
+                  fontSize: 'clamp(14px, 1.2vw, 17px)',
+                  lineHeight: 1.65,
+                  color: 'rgba(26,26,26,0.6)',
+                }}
+              >
+                Follow along for the journey. If the work resonates, reach out and collaborate.
+              </p>
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: 'clamp(18px, 2.5vw, 32px)',
+              paddingTop: 'clamp(16px, 2vw, 24px)',
+              borderTop: '1px solid rgba(26,26,26,0.1)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 12,
+            }}
+          >
+            <div
+              className="font-sans font-medium uppercase tracking-[0.18em]"
+              style={{ fontSize: 10, color: 'rgba(26,26,26,0.35)' }}
+            >
+              Brisbane, Australia
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+              <div
+                className="font-sans font-medium uppercase tracking-[0.18em]"
+                style={{ fontSize: 9, color: 'rgba(196,98,45,0.55)' }}
+              >
+                TheMHS Learning Network Conference 2025
+              </div>
+              <div
+                className="font-sans"
+                style={{ fontSize: 12, color: 'rgba(26,26,26,0.45)', lineHeight: 1.5 }}
+              >
+                Two presentations on AI in mental health: S56A and S23 Featured Symposium, Brisbane.
+              </div>
+            </div>
           </div>
         </div>
 
+        {/* RIGHT — Ember / Photo */}
         <div
           style={{
-            marginTop: 'clamp(18px, 2.5vw, 32px)',
-            paddingTop: 'clamp(16px, 2vw, 24px)',
-            borderTop: '1px solid rgba(26,26,26,0.1)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 12,
+            width: '55%',
+            height: '100%',
+            position: 'relative',
+            overflow: 'hidden',
+            background: '#C4622D',
           }}
         >
           <div
-            className="font-sans font-medium uppercase tracking-[0.18em]"
-            style={{ fontSize: 10, color: 'rgba(26,26,26,0.35)' }}
+            ref={photoContainerRef}
+            onMouseMove={onMouseMove}
+            onMouseLeave={onMouseLeave}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 2,
+              willChange: 'transform',
+              transformStyle: 'preserve-3d',
+            }}
           >
-            Brisbane, Australia
+            <img
+              ref={photoRef}
+              src="/omi-portrait.jpg"
+              alt="Omi Iftikhar"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center top',
+                display: 'block',
+                userSelect: 'none',
+              } as React.CSSProperties}
+              draggable={false}
+            />
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-            <div
-              className="font-sans font-medium uppercase tracking-[0.18em]"
-              style={{ fontSize: 9, color: 'rgba(196,98,45,0.55)' }}
-            >
-              TheMHS Learning Network Conference 2025
-            </div>
-            <div
-              className="font-sans"
-              style={{ fontSize: 12, color: 'rgba(26,26,26,0.45)', lineHeight: 1.5 }}
-            >
-              Two presentations on AI in mental health: S56A and S23 Featured Symposium, Brisbane.
-            </div>
-          </div>
+
+          {/* Ember colour wash */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: '#C4622D',
+              opacity: 0.15,
+              mixBlendMode: 'multiply',
+              zIndex: 3,
+              pointerEvents: 'none',
+            }}
+          />
+
+          {/* Left-edge gradient */}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              width: '28%',
+              background: 'linear-gradient(to right, #C4622D, transparent)',
+              zIndex: 4,
+              pointerEvents: 'none',
+            }}
+          />
+
+          {/* Bottom gradient */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '20%',
+              background: 'linear-gradient(to bottom, transparent, #C4622D)',
+              zIndex: 4,
+              pointerEvents: 'none',
+            }}
+          />
         </div>
       </div>
 
-      {/* RIGHT — Ember / Photo */}
-      <div
-        style={{
-          width: '100%',
-          minHeight: '60vh',
-          position: 'relative',
-          overflow: 'hidden',
-          background: '#C4622D',
-        }}
-      >
+      {/* Mobile: Stacked layout */}
+      <div className="md:hidden w-full" style={{ display: 'flex', flexDirection: 'column' }}>
+        {/* Text Section */}
         <div
-          ref={photoContainerRef}
-          onMouseMove={onMouseMove}
-          onMouseLeave={onMouseLeave}
           style={{
-            position: 'absolute',
-            inset: 0,
+            width: '100%',
+            minHeight: '50vh',
+            background: '#F5F0E8',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            paddingTop: 60,
+            paddingBottom: 60,
+            paddingLeft: 'clamp(28px, 5vw, 96px)',
+            paddingRight: 'clamp(28px, 5vw, 56px)',
+            position: 'relative',
             zIndex: 2,
-            willChange: 'transform',
-            transformStyle: 'preserve-3d',
           }}
         >
-          <img
-            ref={photoRef}
-            src="/omi-portrait.jpg"
-            alt="Omi Iftikhar"
+          <div style={{ overflow: 'hidden', paddingBottom: 6 }}>
+            <div
+              className="about-l1 font-serif font-light text-obsidian"
+              style={{
+                fontSize: 'clamp(36px, 8vw, 64px)',
+                lineHeight: 1.0,
+                letterSpacing: '-0.025em',
+              }}
+            >
+              Hi.
+            </div>
+          </div>
+
+          <div
             style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center top',
-              display: 'block',
-              userSelect: 'none',
-            } as React.CSSProperties}
-            draggable={false}
-          />
+              overflow: 'hidden',
+              paddingBottom: 6,
+              marginBottom: 'clamp(16px, 3vw, 28px)',
+            }}
+          >
+            <div
+              className="about-l2 font-serif font-light text-obsidian"
+              style={{
+                fontSize: 'clamp(36px, 8vw, 64px)',
+                lineHeight: 1.05,
+                letterSpacing: '-0.025em',
+              }}
+            >
+              I am{' '}
+              <em style={{ color: '#C4622D', fontStyle: 'italic' }}>Omi</em>.
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'clamp(10px, 1.6vw, 16px)',
+            }}
+          >
+            <p
+              className="font-sans"
+              style={{
+                fontSize: 'clamp(13px, 1.2vw, 15px)',
+                lineHeight: 1.72,
+                color: 'rgba(26,26,26,0.7)',
+              }}
+            >
+              I work in healthcare data and AI in Australia, and I am pursuing a PhD in artificial intelligence for mental healthcare. Everything I do returns to a single question: can a model be trusted with a clinical decision, and if so, on what grounds?
+            </p>
+            <p
+              className="font-sans"
+              style={{
+                fontSize: 'clamp(13px, 1.2vw, 15px)',
+                lineHeight: 1.72,
+                color: 'rgba(26,26,26,0.7)',
+              }}
+            >
+              The challenge does not stop at the clinic door. Increasingly, people in distress are turning to large language models for mental health support, tools that are articulate, always available, and entirely unregulated as therapeutic aids. These systems were not designed to hold that role, yet they do.
+            </p>
+            <p
+              className="font-sans"
+              style={{
+                fontSize: 'clamp(13px, 1.2vw, 15px)',
+                lineHeight: 1.72,
+                color: 'rgba(26,26,26,0.7)',
+              }}
+            >
+              The core problem is not the absence of guardrails, though more rigorous constraints are warranted. It is that nobody, including the engineers who built these systems, can fully account for how a large language model reasons, what it prioritises, or where its logic fails. That opacity is the black box.
+            </p>
+
+            {/* Collaboration invitation */}
+            <div
+              style={{
+                marginTop: 4,
+                paddingLeft: 14,
+                borderLeft: '2px solid #C4622D',
+              }}
+            >
+              <p
+                className="font-serif italic font-light"
+                style={{
+                  fontSize: 'clamp(14px, 1.2vw, 16px)',
+                  lineHeight: 1.65,
+                  color: 'rgba(26,26,26,0.6)',
+                }}
+              >
+                Follow along for the journey. If the work resonates, reach out and collaborate.
+              </p>
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: 'clamp(16px, 2.5vw, 24px)',
+              paddingTop: 'clamp(14px, 2vw, 20px)',
+              borderTop: '1px solid rgba(26,26,26,0.1)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 10,
+            }}
+          >
+            <div
+              className="font-sans font-medium uppercase tracking-[0.18em]"
+              style={{ fontSize: 9, color: 'rgba(26,26,26,0.35)' }}
+            >
+              Brisbane, Australia
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <div
+                className="font-sans font-medium uppercase tracking-[0.18em]"
+                style={{ fontSize: 8, color: 'rgba(196,98,45,0.55)' }}
+              >
+                TheMHS Learning Network Conference 2025
+              </div>
+              <div
+                className="font-sans"
+                style={{ fontSize: 11, color: 'rgba(26,26,26,0.45)', lineHeight: 1.5 }}
+              >
+                Two presentations on AI in mental health: S56A and S23 Featured Symposium, Brisbane.
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Ember colour wash */}
+        {/* Photo Section */}
         <div
           style={{
-            position: 'absolute',
-            inset: 0,
+            width: '100%',
+            minHeight: '60vh',
+            position: 'relative',
+            overflow: 'hidden',
             background: '#C4622D',
-            opacity: 0.15,
-            mixBlendMode: 'multiply',
-            zIndex: 3,
-            pointerEvents: 'none',
           }}
-        />
+        >
+          <div
+            ref={photoContainerRef}
+            onMouseMove={onMouseMove}
+            onMouseLeave={onMouseLeave}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 2,
+              willChange: 'transform',
+              transformStyle: 'preserve-3d',
+            }}
+          >
+            <img
+              ref={photoRef}
+              src="/omi-portrait.jpg"
+              alt="Omi Iftikhar"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center top',
+                display: 'block',
+                userSelect: 'none',
+              } as React.CSSProperties}
+              draggable={false}
+            />
+          </div>
 
-        {/* Left-edge gradient */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            bottom: 0,
-            width: '28%',
-            background: 'linear-gradient(to right, #C4622D, transparent)',
-            zIndex: 4,
-            pointerEvents: 'none',
-          }}
-        />
+          {/* Ember colour wash */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: '#C4622D',
+              opacity: 0.15,
+              mixBlendMode: 'multiply',
+              zIndex: 3,
+              pointerEvents: 'none',
+            }}
+          />
 
-        {/* Bottom gradient */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: '20%',
-            background: 'linear-gradient(to bottom, transparent, #C4622D)',
-            zIndex: 4,
-            pointerEvents: 'none',
-          }}
-        />
+          {/* Left-edge gradient */}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              width: '28%',
+              background: 'linear-gradient(to right, #C4622D, transparent)',
+              zIndex: 4,
+              pointerEvents: 'none',
+            }}
+          />
+
+          {/* Bottom gradient */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '20%',
+              background: 'linear-gradient(to bottom, transparent, #C4622D)',
+              zIndex: 4,
+              pointerEvents: 'none',
+            }}
+          />
+        </div>
       </div>
     </section>
   );
