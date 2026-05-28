@@ -145,9 +145,15 @@ export function Footer() {
           className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-8"
           style={{ borderTop: '1px solid rgba(245,240,232,0.07)' }}
         >
-          <p className="font-serif italic font-light" style={{ fontSize: 16, color: 'rgba(245,240,232,0.3)' }}>
-            Trust, before intelligence.
-          </p>
+          <div className="flex flex-col gap-2">
+            <p className="font-serif italic font-light" style={{ fontSize: 16, color: 'rgba(245,240,232,0.3)' }}>
+              Trust, before intelligence.
+            </p>
+            <div className="flex gap-4">
+              <a href="/terms" className="font-sans transition-colors duration-200" style={{ fontSize: 13, color: 'rgba(245,240,232,0.4)' }} onMouseEnter={e => { e.currentTarget.style.color = '#C4622D'; }} onMouseLeave={e => { e.currentTarget.style.color = 'rgba(245,240,232,0.4)'; }}>Terms of Service</a>
+              <a href="/privacy" className="font-sans transition-colors duration-200" style={{ fontSize: 13, color: 'rgba(245,240,232,0.4)' }} onMouseEnter={e => { e.currentTarget.style.color = '#C4622D'; }} onMouseLeave={e => { e.currentTarget.style.color = 'rgba(245,240,232,0.4)'; }}>Privacy Policy</a>
+            </div>
+          </div>
           <p className="font-mono uppercase tracking-[0.14em]" style={{ fontSize: 11, color: 'rgba(245,240,232,0.25)' }}>
             © {year} Omi Iftikhar · Brisbane, AU
           </p>
