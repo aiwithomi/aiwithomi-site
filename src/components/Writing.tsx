@@ -60,7 +60,7 @@ function Post3D({ post }: { post: typeof POSTS[0] }) {
         transformPerspective: 1000,
         borderTop: '1px solid rgba(245,240,232,0.1)',
       }}
-      className="group relative grid grid-cols-[80px_1fr_auto] gap-8 items-start py-12 js-reveal cursor-pointer"
+      className="group relative grid grid-cols-[80px_1fr_auto] gap-8 items-start py-12 js-reveal-item cursor-pointer"
     >
       {/* Big number */}
       <div
@@ -134,11 +134,11 @@ export function Writing() {
         </div>
 
         {/* Editorial list */}
-        <div className="flex flex-col">
+        <div className="flex flex-col js-reveal-group">
           {POSTS.map((post, i) => (
             <Post3D key={i} post={post} />
           ))}
-          <div style={{ borderTop: '1px solid rgba(245,240,232,0.1)' }} />
+          <div className="js-draw-line h-[1px] w-full" style={{ background: 'rgba(245,240,232,0.1)' }} />
         </div>
 
         {/* Substack CTA */}

@@ -31,3 +31,6 @@ coverage/
 .dev.vars*
 !.dev.vars.example
 !.env.example
+
+graphify-out/
+review-assets/

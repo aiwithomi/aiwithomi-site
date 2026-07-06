@@ -14,6 +14,8 @@ import { AskOmi } from '@/components/AskOmi';
 import { BackToTop } from '@/components/BackToTop';
 import { Admin } from '@/components/Admin';
 import { Collaborate } from '@/components/Collaborate';
+import { LegalPage } from '@/pages/LegalPage';
+import { Route, Switch } from 'wouter';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -79,6 +81,64 @@ function Site() {
         );
       });
 
+      // Horizontal line drawing scroll reveals
+      gsap.utils.toArray<HTMLElement>('.js-draw-line').forEach(el => {
+        gsap.fromTo(el,
+          { scaleX: 0, transformOrigin: 'left center' },
+          {
+            scaleX: 1,
+            duration: 1.4,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 92%',
+              toggleActions: 'play none none none',
+            },
+          },
+        );
+      });
+
+      // Vertical line drawing scroll reveals
+      gsap.utils.toArray<HTMLElement>('.js-draw-line-y').forEach(el => {
+        gsap.fromTo(el,
+          { scaleY: 0, transformOrigin: 'top center' },
+          {
+            scaleY: 1,
+            duration: 1.4,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 92%',
+              toggleActions: 'play none none none',
+            },
+          },
+        );
+      });
+
+      // Staggered reveals for groups of elements (e.g. grids of cards)
+      gsap.utils.toArray<HTMLElement>('.js-reveal-group').forEach(group => {
+        const items = group.querySelectorAll('.js-reveal-item');
+        if (items.length === 0) return;
+        gsap.fromTo(items,
+          {
+            y: 30,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.85,
+            ease: 'power3.out',
+            stagger: 0.12,
+            scrollTrigger: {
+              trigger: group,
+              start: 'top 88%',
+              toggleActions: 'play none none none',
+            },
+          },
+        );
+      });
+
       // Beam scroll parallax
       gsap.utils.toArray<HTMLElement>('.js-parallax-beam').forEach(el => {
         gsap.to(el, {
@@ -124,11 +184,35 @@ function Site() {
 }
 
 function App() {
-  const isAdmin = window.location.pathname === '/admin';
-
   return (
     <QueryClientProvider client={queryClient}>
-      {isAdmin ? <Admin /> : <Site />}
+      <Switch>
+        <Route path="/terms">
+          <div className="page-transition">
+            <LegalPage type="terms" />
+          </div>
+        </Route>
+        <Route path="/privacy">
+          <div className="page-transition">
+            <LegalPage type="privacy" />
+          </div>
+        </Route>
+        <Route path="/admin">
+          <div className="page-transition">
+            <Admin />
+          </div>
+        </Route>
+        <Route path="/">
+          <div className="page-transition">
+            <Site />
+          </div>
+        </Route>
+        <Route>
+          <div className="page-transition">
+            <Site />
+          </div>
+        </Route>
+      </Switch>
     </QueryClientProvider>
   );
 }

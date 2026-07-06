@@ -71,7 +71,7 @@ export function Footer() {
     <footer className="bg-obsidian px-[clamp(28px,5vw,80px)] pb-12">
       {/* Full-width ember rule */}
       <div
-        className="h-[1px] mb-14"
+        className="js-draw-line h-[1px] mb-14"
         style={{ background: 'linear-gradient(90deg, #C4622D 0%, rgba(196,98,45,0.25) 50%, transparent 100%)' }}
       />
 
@@ -141,22 +141,22 @@ export function Footer() {
         </div>
 
         {/* Colophon */}
-        <div
-          className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-8"
-          style={{ borderTop: '1px solid rgba(245,240,232,0.07)' }}
-        >
-          <div className="flex flex-col gap-2">
-            <p className="font-serif italic font-light" style={{ fontSize: 16, color: 'rgba(245,240,232,0.3)' }}>
-              Trust, before intelligence.
-            </p>
-            <div className="flex gap-4">
-              <a href="/terms" className="font-sans transition-colors duration-200" style={{ fontSize: 13, color: 'rgba(245,240,232,0.4)' }} onMouseEnter={e => { e.currentTarget.style.color = '#C4622D'; }} onMouseLeave={e => { e.currentTarget.style.color = 'rgba(245,240,232,0.4)'; }}>Terms of Service</a>
-              <a href="/privacy" className="font-sans transition-colors duration-200" style={{ fontSize: 13, color: 'rgba(245,240,232,0.4)' }} onMouseEnter={e => { e.currentTarget.style.color = '#C4622D'; }} onMouseLeave={e => { e.currentTarget.style.color = 'rgba(245,240,232,0.4)'; }}>Privacy Policy</a>
+        <div className="relative pt-8">
+          <div className="js-draw-line absolute top-0 left-0 right-0 h-[1px]" style={{ background: 'rgba(245,240,232,0.07)' }} />
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <div className="flex flex-col gap-2">
+              <p className="font-serif italic font-light" style={{ fontSize: 16, color: 'rgba(245,240,232,0.3)' }}>
+                Trust, before intelligence.
+              </p>
+              <div className="flex gap-4">
+                <a href="/terms" className="font-sans transition-colors duration-200" style={{ fontSize: 13, color: 'rgba(245,240,232,0.4)' }} onMouseEnter={e => { e.currentTarget.style.color = '#C4622D'; }} onMouseLeave={e => { e.currentTarget.style.color = 'rgba(245,240,232,0.4)'; }}>Terms of Service</a>
+                <a href="/privacy" className="font-sans transition-colors duration-200" style={{ fontSize: 13, color: 'rgba(245,240,232,0.4)' }} onMouseEnter={e => { e.currentTarget.style.color = '#C4622D'; }} onMouseLeave={e => { e.currentTarget.style.color = 'rgba(245,240,232,0.4)'; }}>Privacy Policy</a>
+              </div>
             </div>
+            <p className="font-mono uppercase tracking-[0.14em]" style={{ fontSize: 11, color: 'rgba(245,240,232,0.25)' }}>
+              © {year} Omi Iftikhar · Brisbane, AU
+            </p>
           </div>
-          <p className="font-mono uppercase tracking-[0.14em]" style={{ fontSize: 11, color: 'rgba(245,240,232,0.25)' }}>
-            © {year} Omi Iftikhar · Brisbane, AU
-          </p>
         </div>
       </div>
     </footer>

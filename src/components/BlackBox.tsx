@@ -28,6 +28,39 @@ const PRESETS = [
   { label: 'Geriatric', text: 'A 72-year-old with confusion and a recent fall' },
 ];
 
+const MOCK_RESULTS: Record<string, TriageResult> = {
+  'A 34-year-old with chest pain after a long flight': {
+    recommendation: 'Priority review within 2 hours — Emergency Department presentation recommended.',
+    confidence: 92,
+    features: [
+      { name: 'Chest pain', weight: 'high', note: 'Primary presenting symptom requires immediate ruling out of acute coronary syndrome or pulmonary embolism.' },
+      { name: 'Recent long-haul travel', weight: 'high', note: 'Immobility during flight significantly increases risk of deep vein thrombosis (DVT) and secondary pulmonary embolism.' },
+      { name: 'Age 34', weight: 'low', note: 'Young age reduces baseline cardiorespiratory disease risk but does not mitigate acute thromboembolic risk.' }
+    ],
+    uncertainty: 'Unable to verify vital signs, oxygen saturation, presence of unilateral leg swelling, or pleuritic nature of the chest pain from the brief text description.'
+  },
+  'A teenager with sudden mood drop and social withdrawal': {
+    recommendation: 'Urgent clinical assessment by a mental health professional within 24 hours.',
+    confidence: 85,
+    features: [
+      { name: 'Sudden mood drop', weight: 'high', note: 'Rapid changes in mood in teenagers warrant immediate evaluation for acute depressive episodes or stress-related crisis.' },
+      { name: 'Social withdrawal', weight: 'high', note: 'Withdrawal from peer groups and activities is a key indicator of clinical distress and functional impairment.' },
+      { name: 'Adolescent age group', weight: 'medium', note: 'Increased vulnerability to rapid clinical deterioration and risk issues requires proactive, developmentally appropriate review.' }
+    ],
+    uncertainty: 'Lack of detail on duration of symptoms, presence of self-harm or suicidal ideation, academic changes, or family support structures.'
+  },
+  'A 72-year-old with confusion and a recent fall': {
+    recommendation: 'Immediate medical review — hospital evaluation recommended to exclude acute delirium.',
+    confidence: 95,
+    features: [
+      { name: 'Acute confusion', weight: 'high', note: 'Sudden onset confusion in an older adult is delirium until proven otherwise; requires screening for infection (e.g. UTI), medication reaction, or stroke.' },
+      { name: 'Recent fall', weight: 'high', note: 'Poses immediate physical risk (e.g., subdural haematoma, fracture) and suggests structural or physiological instability.' },
+      { name: 'Age 72', weight: 'medium', note: 'Vulnerability to rapid cognitive decline and outcomes following physical trauma.' }
+    ],
+    uncertainty: 'Baseline cognitive status is unknown, making it impossible to determine the extent of acute change vs chronic delirium. Vital signs, pupillary response, and focal neurological signs are unassessed.'
+  }
+};
+
 export function BlackBox() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -58,7 +91,24 @@ export function BlackBox() {
     });
 
     try {
-      if (!window.claude?.complete) throw new Error('AI not available in this environment.');
+      if (!window.claude?.complete) {
+        const cleanInput = input.trim();
+        const presetResult = MOCK_RESULTS[cleanInput];
+        if (presetResult) {
+          setTimeout(() => {
+            clearTimers();
+            setActiveStep(4);
+            setTimeout(() => {
+              setResult(presetResult);
+              setLoading(false);
+              setTimeout(() => setBarWidth(presetResult.confidence), 80);
+            }, 350);
+          }, 1800);
+          return;
+        } else {
+          throw new Error('Custom entries require connection to the clinical research model, which is currently offline. Please select one of the common clinical scenarios above to test the triage reasoning demo.');
+        }
+      }
 
       const prompt = `You are a triage demonstration for AIwithOmi. Given this clinical presentation, return ONLY valid JSON with no markdown, no code fences:
 {
@@ -101,30 +151,32 @@ Presentation: "${input}"`;
 
       <div className="max-w-[1080px] mx-auto relative z-10">
         {/* Section header — brand-book 2-col grid */}
-        <div
-          className="grid mb-16 pb-10 js-reveal"
-          style={{
-            gridTemplateColumns: 'clamp(120px, 15vw, 200px) 1fr',
-            gap: 'clamp(24px, 4vw, 48px)',
-            alignItems: 'baseline',
-            borderBottom: '1px solid rgba(245,240,232,0.08)',
-          }}
-        >
-          <div className="flex flex-col gap-3">
-            <div className="font-mono tracking-[0.06em]" style={{ fontSize: 11, color: 'rgba(245,240,232,0.35)' }}>02</div>
-            <div className="uppercase font-medium font-sans tracking-[0.18em]" style={{ fontSize: 11, color: 'rgba(245,240,232,0.5)' }}>The Black Box</div>
+        <div className="relative mb-16 pb-10 js-reveal">
+          <div
+            className="grid"
+            style={{
+              gridTemplateColumns: 'clamp(120px, 15vw, 200px) 1fr',
+              gap: 'clamp(24px, 4vw, 48px)',
+              alignItems: 'baseline',
+            }}
+          >
+            <div className="flex flex-col gap-3">
+              <div className="font-mono tracking-[0.06em]" style={{ fontSize: 11, color: 'rgba(245,240,232,0.35)' }}>02</div>
+              <div className="uppercase font-medium font-sans tracking-[0.18em]" style={{ fontSize: 11, color: 'rgba(245,240,232,0.5)' }}>The Black Box</div>
+            </div>
+            <div>
+              <h2 className="font-serif font-light leading-[1.0] tracking-[-0.01em] mb-4" style={{ fontSize: 'clamp(40px, 5vw, 64px)' }}>
+                Open the <span className="text-ember">black box</span>.
+              </h2>
+              <p className="font-serif italic font-light leading-[1.45]" style={{ fontSize: 21, color: 'rgba(245,240,232,0.65)', maxWidth: '52ch' }}>
+                A live demonstration. Watch the model explain its reasoning in plain English. Trust is not a claim. It is a demonstration.
+              </p>
+              <p className="font-sans leading-[1.7] mt-4" style={{ fontSize: 14, color: 'rgba(245,240,232,0.4)', maxWidth: '52ch' }}>
+                Clinicians resist AI not out of technophobia, but because they cannot interrogate a system that produces no auditable reasoning. That resistance is rational. The same opacity that stalls clinical adoption is the force behind a more urgent problem: consumer AI platforms fielding mental health queries with no grounding in clinical evidence and no mechanism for accountability. When those systems get it wrong, people are harmed. My research treats interpretability not as an engineering refinement but as a precondition for safe deployment in any high-stakes domain.
+              </p>
+            </div>
           </div>
-          <div>
-            <h2 className="font-serif font-light leading-[1.0] tracking-[-0.01em] mb-4" style={{ fontSize: 'clamp(40px, 5vw, 64px)' }}>
-              Open the <span className="text-ember">black box</span>.
-            </h2>
-            <p className="font-serif italic font-light leading-[1.45]" style={{ fontSize: 21, color: 'rgba(245,240,232,0.65)', maxWidth: '52ch' }}>
-              A live demonstration. Watch the model explain its reasoning in plain English. Trust is not a claim. It is a demonstration.
-            </p>
-            <p className="font-sans leading-[1.7] mt-4" style={{ fontSize: 14, color: 'rgba(245,240,232,0.4)', maxWidth: '52ch' }}>
-              Clinicians resist AI not out of technophobia, but because they cannot interrogate a system that produces no auditable reasoning. That resistance is rational. The same opacity that stalls clinical adoption is the force behind a more urgent problem: consumer AI platforms fielding mental health queries with no grounding in clinical evidence and no mechanism for accountability. When those systems get it wrong, people are harmed. My research treats interpretability not as an engineering refinement but as a precondition for safe deployment in any high-stakes domain.
-            </p>
-          </div>
+          <div className="js-draw-line absolute bottom-0 left-0 right-0 h-[1px]" style={{ background: 'rgba(245,240,232,0.08)' }} />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1.1fr] gap-8">

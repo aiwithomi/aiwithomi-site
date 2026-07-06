@@ -25,6 +25,25 @@ declare global {
   }
 }
 
+const MOCK_MYTHS: Record<string, ClaimResult> = {
+  'AI will replace doctors': {
+    verdict: 'Myth',
+    response: 'Clinical practice is not just pattern recognition — it is a sociotechnical accomplishment grounded in human relationships, shared decision-making, and moral accountability. An AI can parse volumes of medical literature or match pixels in a scan, but it cannot hold the hand of a grieving family, interpret the unspoken fears of a patient in crisis, or bear the legal and ethical responsibility for a treatment decision.\n\nRather than replacement, the future is co-agency. AI will automate administrative overhead, triage diagnostic data, and highlight clinical guidelines. This shifting of tasks will free clinicians to return to the core of medicine: direct, relational patient care. The threat is not replacement, but bad integration that degrades the human element of care.'
+  },
+  'AI is objective and unbiased': {
+    verdict: 'Myth',
+    response: 'AI models do not exist in a vacuum; they reflect, encode, and amplify the biases present in the clinical datasets used to train them. If historical training data contains disparities in how racial minorities, women, or low-income patients were diagnosed and treated, the model will codify those disparities as objective guidelines.\n\nBias is also introduced in how models are designed and deployed. Algorithms optimized for clinical metrics without sociotechnical grounding can fail when integrated into diverse, real-world clinics. Trusting AI blindly under the guise of \'mathematical objectivity\' is a recipe for worsening health inequities.'
+  },
+  'AI is more accurate than clinicians': {
+    verdict: 'Nuanced',
+    response: 'AI models excel in narrow, data-dense tasks (like detecting anomalies in dermatology images or retinal scans) where they often match or exceed the speed and sensitivity of human specialists. However, accuracy in a clean research dataset does not equal accuracy in a chaotic clinical environment.\n\nClinicians navigate complex, messy realities: patients with multiple co-occurring chronic diseases, incomplete medical records, vague symptoms, and social factors. In these holistic scenarios, clinician reasoning remains vastly superior. The highest accuracy is achieved when clinical expertise is augmented by AI, rather than pitting one against the other.'
+  },
+  'We cannot trust AI in healthcare': {
+    verdict: 'Partial truth',
+    response: 'We cannot trust clinical AI *by default*. Blanket trust in opaque, \'black box\' models is dangerous and irresponsible. Clinicians must be able to interrogate the system, understand how it weighted features, and identify where its confidence breaks down.\n\nHowever, trust can be systematically co-constituted. If we design clear explainability interfaces, establish visible organizational governance frameworks, and align the tool with clinical workflow, we can build a safe, auditable environment where AI becomes a reliable partner.'
+  }
+};
+
 export function MythChecker() {
   const [claim, setClaim]             = useState('');
   const [displayedClaim, setDisplayedClaim] = useState('');
@@ -60,7 +79,19 @@ export function MythChecker() {
     setResult(null);
     setError('');
     try {
-      if (!window.claude?.complete) throw new Error('AI not available in this environment.');
+      if (!window.claude?.complete) {
+        const cleanClaim = claim.trim();
+        const presetResult = MOCK_MYTHS[cleanClaim];
+        if (presetResult) {
+          setTimeout(() => {
+            setResult(presetResult);
+            setLoading(false);
+          }, 1500);
+          return;
+        } else {
+          throw new Error('Custom evaluations require connection to the PhD clinical reasoning API, which is currently offline. Please pick one of the common claims below to test the myth checker.');
+        }
+      }
       const prompt = `You are Omi Iftikhar — a healthcare data professional and PhD candidate in AI for mental healthcare in Australia. Evaluate the claim below directly in your voice: first-person, warm but honest, no hedging, no em dashes, no emoji, Australian English.
 
 Return ONLY valid JSON with no markdown:
@@ -72,7 +103,6 @@ Claim: "${claim}"`;
       setResult(JSON.parse(cleaned));
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : 'Something went wrong. Try again.');
-    } finally {
       setLoading(false);
     }
   }
@@ -89,7 +119,7 @@ Claim: "${claim}"`;
     <section className="relative w-full overflow-hidden" style={{ background: '#111111' }}>
 
       {/* Top ember rule */}
-      <div className="absolute top-0 left-0 right-0 h-[2px]"
+      <div className="js-draw-line absolute top-0 left-0 right-0 h-[2px]"
         style={{ background: 'linear-gradient(90deg, #C4622D 0%, rgba(196,98,45,0.4) 50%, transparent 80%)' }} />
 
       {/* Background beam */}
@@ -211,7 +241,7 @@ Claim: "${claim}"`;
                 </span>
               </button>
             ))}
-            <div style={{ borderTop: '1px solid rgba(245,240,232,0.06)' }} />
+            <div className="js-draw-line h-[1px] w-full" style={{ background: 'rgba(245,240,232,0.06)' }} />
 
             {/* Custom input */}
             <div className="mt-6">

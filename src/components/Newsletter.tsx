@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSubscribe } from '../lib/api-stub';
+import { useSubscribe, SubscribeData } from '../lib/api-stub';
 
 export function Newsletter() {
   const [email, setEmail] = useState('');
@@ -8,7 +8,7 @@ export function Newsletter() {
 
   const subscribe = useSubscribe({
     mutation: {
-      onSuccess: (data) => {
+      onSuccess: (data: SubscribeData) => {
         setSubmitted(true);
         setMessage(data.alreadySubscribed ? 'Already on the list.' : 'You are in.');
         setEmail('');

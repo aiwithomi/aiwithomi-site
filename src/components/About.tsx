@@ -6,11 +6,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function About() {
   const sectionRef = useRef<HTMLElement>(null);
-  const photoRef = useRef<HTMLImageElement>(null);
-  const photoContainerRef = useRef<HTMLDivElement>(null);
-
   function onMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const el = photoContainerRef.current!;
+    const el = e.currentTarget;
     const rect = el.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -23,8 +20,8 @@ export function About() {
     });
   }
 
-  function onMouseLeave() {
-    gsap.to(photoContainerRef.current, {
+  function onMouseLeave(e: React.MouseEvent<HTMLDivElement>) {
+    gsap.to(e.currentTarget, {
       rotateY: 0,
       rotateX: 0,
       duration: 1.4,
@@ -34,13 +31,13 @@ export function About() {
 
   useEffect(() => {
     const section = sectionRef.current;
-    const photo = photoRef.current;
-    if (!section || !photo) return;
+    if (!section) return;
 
+    const photos = section.querySelectorAll('.about-photo');
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
-    gsap.set(photo, { opacity: 0, scale: 1.06, transformOrigin: 'center top' });
+    gsap.set(photos, { opacity: 0, scale: 1.06, transformOrigin: 'center top' });
     gsap.set('.about-l1', { yPercent: 110 });
     gsap.set('.about-l2', { yPercent: 110 });
 
@@ -53,14 +50,15 @@ export function About() {
       },
     });
 
-    tl.to(photo, { opacity: 1, scale: 1, duration: 0.9, ease: 'power3.out' }, 0);
+    tl.to(photos, { opacity: 1, scale: 1, duration: 0.9, ease: 'power3.out' }, 0);
     tl.to('.about-l1', { yPercent: 0, duration: 0.65, ease: 'power3.out' }, 0.15);
     tl.to('.about-l2', { yPercent: 0, duration: 0.65, ease: 'power3.out' }, 0.32);
 
     return () => {
       tl.scrollTrigger?.kill(true);
       tl.kill();
-      gsap.set([photo, '.about-l1', '.about-l2'], { clearProps: 'all' });
+      gsap.set(photos, { clearProps: 'all' });
+      gsap.set(['.about-l1', '.about-l2'], { clearProps: 'all' });
     };
   }, []);
 
@@ -77,7 +75,86 @@ export function About() {
     >
       {/* Desktop: Side-by-side layout */}
       <div className="hidden md:flex w-full h-full" style={{ minHeight: '100vh' }}>
-        {/* LEFT — Parchment / Text */}
+        {/* LEFT — Ember / Photo */}
+        <div
+          style={{
+            width: '55%',
+            height: '100%',
+            position: 'relative',
+            overflow: 'hidden',
+            background: '#C4622D',
+          }}
+        >
+          <div
+            onMouseMove={onMouseMove}
+            onMouseLeave={onMouseLeave}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 2,
+              willChange: 'transform',
+              transformStyle: 'preserve-3d',
+            }}
+          >
+            <img
+              className="about-photo"
+              src="/omi-portrait.jpg"
+              alt="Omi Iftikhar"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center top',
+                display: 'block',
+                userSelect: 'none',
+              } as React.CSSProperties}
+              draggable={false}
+            />
+          </div>
+
+          {/* Ember colour wash */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: '#C4622D',
+              opacity: 0.15,
+              mixBlendMode: 'multiply',
+              zIndex: 3,
+              pointerEvents: 'none',
+            }}
+          />
+
+          {/* Right-edge gradient */}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              bottom: 0,
+              width: '28%',
+              background: 'linear-gradient(to left, #C4622D, transparent)',
+              zIndex: 4,
+              pointerEvents: 'none',
+            }}
+          />
+
+          {/* Bottom gradient */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '20%',
+              background: 'linear-gradient(to bottom, transparent, #C4622D)',
+              zIndex: 4,
+              pointerEvents: 'none',
+            }}
+          />
+        </div>
+
+        {/* RIGHT — Parchment / Text */}
         <div
           style={{
             width: '45%',
@@ -88,8 +165,8 @@ export function About() {
             justifyContent: 'center',
             paddingTop: 80,
             paddingBottom: 80,
-            paddingLeft: 'clamp(28px, 6vw, 96px)',
-            paddingRight: 'clamp(20px, 3vw, 56px)',
+            paddingLeft: 'clamp(20px, 3vw, 56px)',
+            paddingRight: 'clamp(28px, 6vw, 96px)',
             position: 'relative',
             zIndex: 2,
             overflowY: 'auto',
@@ -220,19 +297,21 @@ export function About() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* RIGHT — Ember / Photo */}
+      {/* Mobile: Stacked layout */}
+      <div className="md:hidden w-full" style={{ display: 'flex', flexDirection: 'column' }}>
+        {/* Photo Section */}
         <div
           style={{
-            width: '55%',
-            height: '100%',
+            width: '100%',
+            minHeight: '60vh',
             position: 'relative',
             overflow: 'hidden',
             background: '#C4622D',
           }}
         >
           <div
-            ref={photoContainerRef}
             onMouseMove={onMouseMove}
             onMouseLeave={onMouseLeave}
             style={{
@@ -244,7 +323,7 @@ export function About() {
             }}
           >
             <img
-              ref={photoRef}
+              className="about-photo"
               src="/omi-portrait.jpg"
               alt="Omi Iftikhar"
               style={{
@@ -300,10 +379,7 @@ export function About() {
             }}
           />
         </div>
-      </div>
 
-      {/* Mobile: Stacked layout */}
-      <div className="md:hidden w-full" style={{ display: 'flex', flexDirection: 'column' }}>
         {/* Text Section */}
         <div
           style={{
@@ -444,86 +520,6 @@ export function About() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Photo Section */}
-        <div
-          style={{
-            width: '100%',
-            minHeight: '60vh',
-            position: 'relative',
-            overflow: 'hidden',
-            background: '#C4622D',
-          }}
-        >
-          <div
-            ref={photoContainerRef}
-            onMouseMove={onMouseMove}
-            onMouseLeave={onMouseLeave}
-            style={{
-              position: 'absolute',
-              inset: 0,
-              zIndex: 2,
-              willChange: 'transform',
-              transformStyle: 'preserve-3d',
-            }}
-          >
-            <img
-              ref={photoRef}
-              src="/omi-portrait.jpg"
-              alt="Omi Iftikhar"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center top',
-                display: 'block',
-                userSelect: 'none',
-              } as React.CSSProperties}
-              draggable={false}
-            />
-          </div>
-
-          {/* Ember colour wash */}
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: '#C4622D',
-              opacity: 0.15,
-              mixBlendMode: 'multiply',
-              zIndex: 3,
-              pointerEvents: 'none',
-            }}
-          />
-
-          {/* Left-edge gradient */}
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              bottom: 0,
-              width: '28%',
-              background: 'linear-gradient(to right, #C4622D, transparent)',
-              zIndex: 4,
-              pointerEvents: 'none',
-            }}
-          />
-
-          {/* Bottom gradient */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: '20%',
-              background: 'linear-gradient(to bottom, transparent, #C4622D)',
-              zIndex: 4,
-              pointerEvents: 'none',
-            }}
-          />
         </div>
       </div>
     </section>

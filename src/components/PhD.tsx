@@ -40,18 +40,18 @@ export function PhD() {
       <div className="max-w-[1080px] mx-auto relative z-10">
 
         {/* Section label */}
-        <div
-          className="flex items-center gap-4 mb-14 js-reveal"
-          style={{ borderBottom: '1px solid rgba(245,240,232,0.08)', paddingBottom: 20 }}
-        >
-          <div className="font-mono tracking-[0.06em]" style={{ fontSize: 11, color: 'rgba(245,240,232,0.3)' }}>03</div>
-          <div className="uppercase font-medium font-sans tracking-[0.18em]" style={{ fontSize: 11, color: 'rgba(245,240,232,0.45)' }}>
-            PhD Research
+        <div className="relative mb-14 pb-5 js-reveal">
+          <div className="flex items-center gap-4">
+            <div className="font-mono tracking-[0.06em]" style={{ fontSize: 11, color: 'rgba(245,240,232,0.3)' }}>03</div>
+            <div className="uppercase font-medium font-sans tracking-[0.18em]" style={{ fontSize: 11, color: 'rgba(245,240,232,0.45)' }}>
+              PhD Research
+            </div>
+            <div style={{ width: 1, height: 14, background: 'rgba(245,240,232,0.15)' }} />
+            <div className="uppercase font-medium font-sans tracking-[0.18em]" style={{ fontSize: 11, color: 'rgba(196,98,45,0.7)' }}>
+              PhD · 2026
+            </div>
           </div>
-          <div style={{ width: 1, height: 14, background: 'rgba(245,240,232,0.15)' }} />
-          <div className="uppercase font-medium font-sans tracking-[0.18em]" style={{ fontSize: 11, color: 'rgba(196,98,45,0.7)' }}>
-            PhD · 2026
-          </div>
+          <div className="js-draw-line absolute bottom-0 left-0 right-0 h-[1px]" style={{ background: 'rgba(245,240,232,0.08)' }} />
         </div>
 
         {/* Thesis title */}
@@ -99,74 +99,77 @@ export function PhD() {
           <div className="uppercase font-medium font-sans tracking-[0.18em] mb-8 js-reveal" style={{ fontSize: 10, color: 'rgba(245,240,232,0.3)' }}>
             Three necessary conditions of trust
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 js-reveal">
-            {[
-              {
-                num: '01',
-                title: 'Explainability Design',
-                body: 'The format, framing, and clinical meaningfulness of how AI outputs are presented at the point of decision.',
-              },
-              {
-                num: '02',
-                title: 'Governance Practice',
-                body: 'The visible organisational processes through which a tool is evaluated, approved, monitored, and held accountable.',
-              },
-              {
-                num: '03',
-                title: 'Workflow Integration',
-                body: 'The alignment between AI outputs and the clinician\'s existing locus of professional responsibility.',
-              },
-            ].map((c, i) => (
-              <div
-                key={i}
-                className="phd-card"
-                style={{
-                  padding: 'clamp(20px, 3vw, 36px)',
-                  borderTop: '1px solid rgba(245,240,232,0.1)',
-                  borderLeft: i > 0 ? '1px solid rgba(245,240,232,0.06)' : undefined,
-                  background: 'transparent',
-                }}
-              >
+          <div className="js-reveal-group">
+            <div className="js-draw-line h-[1px] w-full" style={{ background: 'rgba(245,240,232,0.1)' }} />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+              {[
+                {
+                  num: '01',
+                  title: 'Explainability Design',
+                  body: 'The format, framing, and clinical meaningfulness of how AI outputs are presented at the point of decision.',
+                },
+                {
+                  num: '02',
+                  title: 'Governance Practice',
+                  body: 'The visible organisational processes through which a tool is evaluated, approved, monitored, and held accountable.',
+                },
+                {
+                  num: '03',
+                  title: 'Workflow Integration',
+                  body: 'The alignment between AI outputs and the clinician\'s existing locus of professional responsibility.',
+                },
+              ].map((c, i) => (
                 <div
-                  className="font-serif italic font-light mb-4"
-                  style={{ fontSize: 'clamp(36px, 4vw, 52px)', color: 'rgba(196,98,45,0.15)', lineHeight: 1 }}
+                  key={i}
+                  className="phd-card js-reveal-item"
+                  style={{
+                    padding: 'clamp(20px, 3vw, 36px)',
+                    borderLeft: i > 0 ? '1px solid rgba(245,240,232,0.06)' : undefined,
+                    background: 'transparent',
+                  }}
                 >
-                  {c.num}
+                  <div
+                    className="font-serif italic font-light mb-4"
+                    style={{ fontSize: 'clamp(36px, 4vw, 52px)', color: 'rgba(196,98,45,0.15)', lineHeight: 1 }}
+                  >
+                    {c.num}
+                  </div>
+                  <h3
+                    className="font-serif font-light mb-3"
+                    style={{ fontSize: 'clamp(17px, 1.7vw, 21px)', color: '#F5F0E8', lineHeight: 1.2 }}
+                  >
+                    {c.title}
+                  </h3>
+                  <p
+                    className="font-sans leading-[1.7]"
+                    style={{ fontSize: 'clamp(13px, 1.2vw, 15px)', color: 'rgba(245,240,232,0.5)' }}
+                  >
+                    {c.body}
+                  </p>
                 </div>
-                <h3
-                  className="font-serif font-light mb-3"
-                  style={{ fontSize: 'clamp(17px, 1.7vw, 21px)', color: '#F5F0E8', lineHeight: 1.2 }}
-                >
-                  {c.title}
-                </h3>
-                <p
-                  className="font-sans leading-[1.7]"
-                  style={{ fontSize: 'clamp(13px, 1.2vw, 15px)', color: 'rgba(245,240,232,0.5)' }}
-                >
-                  {c.body}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div
-            style={{
-              padding: 'clamp(14px, 2vw, 24px) clamp(20px, 3vw, 36px)',
-              borderTop: '1px solid rgba(245,240,232,0.1)',
-              background: 'rgba(196,98,45,0.04)',
-            }}
-          >
-            <p className="font-sans" style={{ fontSize: 'clamp(12px, 1.1vw, 14px)', color: 'rgba(245,240,232,0.4)', maxWidth: '72ch' }}>
-              The theoretical claim: clinician trust in AI clinical decision support is not a property of the tool. It is a sociotechnical accomplishment, co-constituted by all three conditions. None is sufficient alone.
-            </p>
+              ))}
+            </div>
+            <div className="js-draw-line h-[1px] w-full" style={{ background: 'rgba(245,240,232,0.1)' }} />
+            <div
+              className="js-reveal-item"
+              style={{
+                padding: 'clamp(14px, 2vw, 24px) clamp(20px, 3vw, 36px)',
+                background: 'rgba(196,98,45,0.04)',
+              }}
+            >
+              <p className="font-sans" style={{ fontSize: 'clamp(12px, 1.1vw, 14px)', color: 'rgba(245,240,232,0.4)', maxWidth: '72ch' }}>
+                The theoretical claim: clinician trust in AI clinical decision support is not a property of the tool. It is a sociotechnical accomplishment, co-constituted by all three conditions. None is sufficient alone.
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Research phases */}
-        <div className="mb-14 js-reveal">
-          <div className="uppercase font-medium font-sans tracking-[0.18em] mb-6" style={{ fontSize: 10, color: 'rgba(245,240,232,0.3)' }}>
+        <div className="mb-14">
+          <div className="uppercase font-medium font-sans tracking-[0.18em] mb-6 js-reveal" style={{ fontSize: 10, color: 'rgba(245,240,232,0.3)' }}>
             Research timeline · Part-time · 5 years
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 js-reveal-group">
             {[
               { phase: 'Phase 1', period: 'Yr 1 to 2', title: 'Trust Mapping', sub: 'Systematic review, interviews, governance analysis in public mental health services.' },
               { phase: 'Phase 2', period: 'Yr 2 to 3.5', title: 'Explainability Design', sub: 'Participatory co-design with clinical teams. Experimental comparison of explanation formats.' },
@@ -175,7 +178,7 @@ export function PhD() {
             ].map((p, i) => (
               <div
                 key={i}
-                className="phd-phase-card"
+                className="phd-phase-card js-reveal-item"
                 style={{
                   padding: '20px 12px',
                   borderTop: `2px solid ${i === 0 ? '#C4622D' : 'rgba(245,240,232,0.1)'}`,
@@ -196,23 +199,23 @@ export function PhD() {
         </div>
 
         {/* Enrolment row */}
-        <div
-          className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-8 js-reveal"
-          style={{ borderTop: '1px solid rgba(245,240,232,0.07)' }}
-        >
-          {[
-            { label: 'Mode', value: 'Part-time' },
-            { label: 'Field', value: 'AI in Mental Healthcare' },
-          ].map(({ label, value }) => (
-            <div key={label} className="flex flex-col gap-1">
-              <div className="uppercase font-medium font-sans tracking-[0.16em]" style={{ fontSize: 9, color: 'rgba(245,240,232,0.3)' }}>
-                {label}
+        <div className="relative pt-8 js-reveal">
+          <div className="js-draw-line absolute top-0 left-0 right-0 h-[1px]" style={{ background: 'rgba(245,240,232,0.07)' }} />
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            {[
+              { label: 'Mode', value: 'Part-time' },
+              { label: 'Field', value: 'AI in Mental Healthcare' },
+            ].map(({ label, value }) => (
+              <div key={label} className="flex flex-col gap-1">
+                <div className="uppercase font-medium font-sans tracking-[0.16em]" style={{ fontSize: 9, color: 'rgba(245,240,232,0.3)' }}>
+                  {label}
+                </div>
+                <div className="font-sans" style={{ fontSize: 'clamp(12px, 1.1vw, 14px)', color: 'rgba(245,240,232,0.6)' }}>
+                  {value}
+                </div>
               </div>
-              <div className="font-sans" style={{ fontSize: 'clamp(12px, 1.1vw, 14px)', color: 'rgba(245,240,232,0.6)' }}>
-                {value}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
       </div>
