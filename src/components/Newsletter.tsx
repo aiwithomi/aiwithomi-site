@@ -1,26 +1,26 @@
 import { useState } from 'react';
-import { useSubscribe, SubscribeData } from '../lib/api-stub';
+
+const SUBSTACK_URL = 'https://aiwithomi.substack.com';
 
 export function Newsletter() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [message, setMessage] = useState('');
 
-  const subscribe = useSubscribe({
-    mutation: {
-      onSuccess: (data: SubscribeData) => {
-        setSubmitted(true);
-        setMessage(data.alreadySubscribed ? 'Already on the list.' : 'You are in.');
-        setEmail('');
-      },
-      onError: () => setMessage('Something went wrong. Try again.'),
-    },
-  });
-
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email.trim()) return;
-    subscribe.mutate({ data: { email } });
+    const trimmed = email.trim();
+    if (!trimmed) return;
+    // The list lives on Substack. Hand off with the email prefilled; the
+    // subscriber confirms there, which doubles as double-opt-in.
+    window.open(
+      `${SUBSTACK_URL}/subscribe?email=${encodeURIComponent(trimmed)}`,
+      '_blank',
+      'noopener,noreferrer',
+    );
+    setSubmitted(true);
+    setMessage('Nearly there. Confirm on the Substack page that just opened.');
+    setEmail('');
   }
 
   return (
@@ -87,12 +87,12 @@ export function Newsletter() {
                 />
                 <button
                   type="submit"
-                  disabled={subscribe.isPending || !email.trim()}
+                  disabled={!email.trim()}
                   data-testid="button-subscribe"
                   className="uppercase font-medium font-sans tracking-[0.2em] text-ember disabled:opacity-30 transition-opacity hover:opacity-70 whitespace-nowrap pl-6"
                   style={{ fontSize: 11 }}
                 >
-                  {subscribe.isPending ? 'Joining...' : 'Join →'}
+                  Join →
                 </button>
               </div>
               {message && (
