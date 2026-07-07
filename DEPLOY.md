@@ -1,6 +1,6 @@
 # Deploy runbook — aiwithomi-site
 
-Updated: 2026-07-07. Status: everything is ready except two GitHub secrets only Omi can add.
+Updated: 2026-07-07. Status: deploy is working (secrets added, Node 22 fix).
 
 ## Why every deploy run fails
 
@@ -22,6 +22,13 @@ https://github.com/AIwithOmi/aiwithomi-site/settings/secrets/actions
 Then either push any commit or open the latest failed run and click "Re-run all jobs".
 The Pages project name is `aiwithomi-site` (already set in the workflow). If the Pages
 project does not exist yet, the action creates it on first successful run.
+
+## Known pitfall (fixed 2026-07-07)
+
+`cloudflare/pages-action@v1` ships wrangler v2, which needs Node.js >= 22. The original
+workflow pinned `setup-node` to `'20'`, causing deploy to crash with
+`Wrangler requires at least Node.js v22.0.0`. Fix: bump to `node-version: '22'` in
+`.github/workflows/deploy.yml`. Now on every push to `main`.
 
 ## Verified working (2026-07-07)
 
