@@ -58,24 +58,22 @@ export function LegalPage({ type }: LegalPageProps) {
   const sections = isTerms ? termsSections : privacySections;
 
   return (
-    <main className="min-h-screen bg-obsidian text-parchment font-sans">
+    <main className="min-h-screen bg-paper text-ink">
       <section className="mx-auto flex min-h-screen w-full max-w-3xl flex-col px-6 py-12 sm:px-8 lg:py-16">
         <Link
           href="/"
-          className="mb-10 inline-flex w-fit text-sm font-medium uppercase tracking-[0.16em] text-copper transition hover:text-parchment"
+          className="mb-10 inline-flex w-fit font-sans text-sm font-semibold tracking-tight text-ink transition hover:text-clay"
         >
-          AIwithOmi
+          AI<span className="text-clay">with</span>Omi
         </Link>
-        <p className="mb-3 text-sm uppercase tracking-[0.18em] text-parchment/50">
-          Last updated {updated}
-        </p>
-        <h1 className="text-4xl font-semibold tracking-normal text-parchment sm:text-5xl">
+        <p className="kicker mb-3">Last updated {updated}</p>
+        <h1 className="font-serif text-4xl font-medium tracking-tight text-ink sm:text-5xl">
           {title}
         </h1>
-        <div className="mt-10 space-y-8 text-base leading-7 text-parchment/78">
+        <div className="mt-10 space-y-8 text-base leading-7 text-muted">
           {sections.map(section => (
             <section key={section.title}>
-              <h2 className="mb-3 text-xl font-semibold tracking-normal text-parchment">
+              <h2 className="mb-3 font-serif text-xl font-semibold text-ink">
                 {section.title}
               </h2>
               <p>{section.body}</p>

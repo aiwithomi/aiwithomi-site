@@ -1,19 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+  AIwithOmi design system — "Anthropic x Linear x Stripe Press".
+  Source of truth: ~/AIwithOmi/strategy/design-system/design-tokens.json
+  Neutral-heavy, sparse accent. Paper background, ink foreground,
+  Claude orange used sparingly.
+*/
 @theme inline {
-  --color-ember: #C4622D;
-  --color-parchment: #F5F0E8;
-  --color-deep-parch: #EDE7DC;
-  --color-obsidian: #1A1A1A;
-  --color-ash: #6B6560;
+  --color-ink: #141413;
+  --color-paper: #FAF9F5;
+  --color-surface: #E8E6DC;
+  --color-mist: #B0AEA5;
+  --color-clay: #D97757;
+  --color-sky: #6A9BCC;
+  --color-moss: #788C5D;
+  /* a11y-safe muted text on paper (midGrey fails contrast for body copy) */
+  --color-muted: #6F6D66;
 
-  --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
-  --font-sans: 'Space Grotesk', 'Helvetica Neue', system-ui, sans-serif;
+  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Poppins', Arial, 'Helvetica Neue', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
 
   --color-background: hsl(var(--background));
@@ -26,62 +36,67 @@
   --color-card-foreground: hsl(var(--card-foreground));
   --color-card-border: hsl(var(--card-border));
 
-  --radius-sm: 6px;
-  --radius-md: 12px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
   --radius-pill: 100px;
 }
 
 :root {
-  --ember:      #C4622D;
-  --parchment:  #F5F0E8;
-  --deep-parch: #EDE7DC;
-  --obsidian:   #1A1A1A;
-  --ash:        #6B6560;
+  --ink: #141413;
+  --paper: #FAF9F5;
+  --surface: #E8E6DC;
+  --mist: #B0AEA5;
+  --clay: #D97757;
 
-  --background: 43 33% 93%; /* parchment */
-  --foreground: 0 0% 10%; /* obsidian */
-  --border: 0 0% 80%;
-  --card: 43 33% 93%;
-  --card-foreground: 0 0% 10%;
-  
-  --popover: 43 33% 93%;
-  --popover-foreground: 0 0% 10%;
-  --primary: 21 64% 47%; /* ember */
-  --primary-foreground: 43 33% 93%;
-  --secondary: 41 27% 89%; /* deep-parch */
-  --secondary-foreground: 0 0% 10%;
-  --muted: 41 27% 89%;
-  --muted-foreground: 29 5% 39%; /* ash */
-  --accent: 41 27% 89%;
-  --accent-foreground: 0 0% 10%;
+  --line: rgba(20, 20, 19, 0.10);
+  --line-soft: rgba(20, 20, 19, 0.06);
+  --clay-12: rgba(217, 119, 87, 0.12);
+
+  --background: 48 33% 97%;   /* paper */
+  --foreground: 60 2% 8%;     /* ink */
+  --border: 60 2% 8% / 0.1;
+  --card: 48 33% 97%;
+  --card-foreground: 60 2% 8%;
+
+  --popover: 48 33% 97%;
+  --popover-foreground: 60 2% 8%;
+  --primary: 16 61% 59%;      /* clay */
+  --primary-foreground: 48 33% 97%;
+  --secondary: 47 21% 89%;    /* surface */
+  --secondary-foreground: 60 2% 8%;
+  --muted: 47 21% 89%;
+  --muted-foreground: 50 4% 41%;
+  --accent: 47 21% 89%;
+  --accent-foreground: 60 2% 8%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-  --input: 0 0% 80%;
-  --ring: 21 64% 47%;
-  
+  --input: 60 2% 8% / 0.14;
+  --ring: 16 61% 59%;
+
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: 0 0% 10%; /* obsidian */
-  --foreground: 43 33% 93%; /* parchment */
-  --border: 0 0% 20%;
-  --card: 0 0% 10%;
-  --card-foreground: 43 33% 93%;
-  --popover: 0 0% 10%;
-  --popover-foreground: 43 33% 93%;
-  --primary: 21 64% 47%;
-  --primary-foreground: 43 33% 93%;
-  --secondary: 0 0% 20%;
-  --secondary-foreground: 43 33% 93%;
-  --muted: 0 0% 20%;
-  --muted-foreground: 29 5% 60%;
-  --accent: 0 0% 20%;
-  --accent-foreground: 43 33% 93%;
+  --background: 60 2% 8%;
+  --foreground: 48 33% 97%;
+  --border: 48 33% 97% / 0.14;
+  --card: 60 2% 8%;
+  --card-foreground: 48 33% 97%;
+  --popover: 60 2% 8%;
+  --popover-foreground: 48 33% 97%;
+  --primary: 16 61% 59%;
+  --primary-foreground: 60 2% 8%;
+  --secondary: 60 2% 12%;
+  --secondary-foreground: 48 33% 97%;
+  --muted: 60 2% 12%;
+  --muted-foreground: 50 4% 60%;
+  --accent: 60 2% 12%;
+  --accent-foreground: 48 33% 97%;
   --destructive: 0 62% 30%;
-  --destructive-foreground: 43 33% 93%;
-  --input: 0 0% 20%;
-  --ring: 21 64% 47%;
+  --destructive-foreground: 48 33% 97%;
+  --input: 48 33% 97% / 0.14;
+  --ring: 16 61% 59%;
 }
 
 @layer base {
@@ -91,16 +106,49 @@
 
   html {
     scroll-behavior: smooth;
-    overflow-x: clip; /* clip not hidden — doesn't create a scroll container, GSAP-safe */
+    overflow-x: clip;
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-serif antialiased bg-paper text-ink;
     overflow-x: clip;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
+  }
+
+  ::selection {
+    background: var(--clay-12);
+  }
+}
+
+/* Kicker label: small caps, Poppins, wide tracking */
+.kicker {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+/* Scroll reveal — CSS transition, toggled by one IntersectionObserver in App */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 

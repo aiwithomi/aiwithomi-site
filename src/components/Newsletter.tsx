@@ -5,7 +5,6 @@ const SUBSTACK_URL = 'https://aiwithomi.substack.com';
 export function Newsletter() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [message, setMessage] = useState('');
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -19,60 +18,49 @@ export function Newsletter() {
       'noopener,noreferrer',
     );
     setSubmitted(true);
-    setMessage('Nearly there. Confirm on the Substack page that just opened.');
     setEmail('');
   }
 
   return (
-    <section
-      id="newsletter"
-      className="relative w-full bg-obsidian text-parchment"
-      style={{
-        paddingTop: 'clamp(60px, 7vw, 90px)',
-        paddingBottom: 'clamp(80px, 10vw, 130px)',
-        paddingLeft: 'clamp(28px, 5vw, 80px)',
-        paddingRight: 'clamp(28px, 5vw, 80px)',
-      }}
-    >
-      {/* Horizontal ember rule */}
-      <div className="max-w-[1080px] mx-auto">
-        <div
-          className="h-[1px] mb-10"
-          style={{ background: 'linear-gradient(90deg, #C4622D 0%, rgba(196,98,45,0.2) 40%, transparent 70%)' }}
-        />
-      </div>
-
-      <div className="max-w-[560px] mx-auto js-reveal">
+    <section id="newsletter" className="w-full" style={{ paddingTop: 'clamp(80px, 12vh, 130px)', paddingBottom: 'clamp(80px, 12vh, 130px)' }}>
+      <div className="max-w-[620px] mx-auto px-6 sm:px-8 text-center">
         {submitted ? (
-          <div className="text-center">
-            <div className="w-6 h-[1px] bg-ember mb-8 mx-auto" />
-            <p className="font-serif italic font-light text-parchment/80 mb-3" style={{ fontSize: 'clamp(24px, 3vw, 36px)' }}>
-              {message}
+          <div className="reveal in">
+            <h2 className="font-serif text-ink" style={{ fontSize: 'clamp(28px, 3.5vw, 40px)', fontWeight: 500, lineHeight: 1.2 }}>
+              Nearly there.
+            </h2>
+            <p className="text-muted" style={{ fontSize: 17, lineHeight: 1.6, marginTop: 16 }}>
+              Confirm on the Substack page that just opened and you are in.
             </p>
             <a
-              href="https://aiwithomi.substack.com"
+              href={SUBSTACK_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="uppercase font-medium font-sans tracking-[0.2em] text-ember hover:opacity-70 transition-opacity"
-              style={{ fontSize: 11 }}
+              className="font-sans inline-block text-clay hover:text-ink transition-colors duration-200"
+              style={{ fontSize: 14, fontWeight: 500, marginTop: 20 }}
             >
-              Open Substack →
+              Open Substack &rarr;
             </a>
           </div>
         ) : (
           <>
+            <p className="kicker reveal" style={{ marginBottom: 24 }}>Newsletter</p>
             <h2
-              className="font-serif font-light leading-[1.05] tracking-[-0.02em] mb-12"
-              style={{ fontSize: 'clamp(44px, 6vw, 72px)', color: '#F5F0E8' }}
+              className="reveal font-serif text-ink"
+              style={{ fontSize: 'clamp(32px, 4.5vw, 52px)', fontWeight: 500, lineHeight: 1.12, letterSpacing: '-0.015em' }}
             >
-              One note.<br />
-              <span className="text-ember italic">Most weekends.</span>
+              One honest email.<br />
+              <em className="text-clay" style={{ fontStyle: 'italic' }}>Most weekends.</em>
             </h2>
+            <p className="reveal text-muted" style={{ fontSize: 17, lineHeight: 1.6, marginTop: 20, transitionDelay: '0.05s' }}>
+              What I learned, what broke, and what I would try next.
+              No hype, no hustle. Unsubscribe any time.
+            </p>
 
-            <form onSubmit={handleSubmit} data-testid="form-newsletter">
+            <form onSubmit={handleSubmit} data-testid="form-newsletter" className="reveal" style={{ marginTop: 36, transitionDelay: '0.1s' }}>
               <div
-                className="flex items-center border-b focus-within:border-ember transition-colors duration-300"
-                style={{ borderBottomColor: 'rgba(245,240,232,0.2)' }}
+                className="flex items-center rounded-pill bg-paper mx-auto"
+                style={{ border: '1px solid var(--line)', maxWidth: 440, padding: '6px 6px 6px 22px' }}
               >
                 <input
                   type="email"
@@ -82,27 +70,19 @@ export function Newsletter() {
                   placeholder="Your email address"
                   required
                   data-testid="input-email"
-                  className="flex-1 bg-transparent py-4 focus:outline-none font-sans placeholder:text-parchment/25 text-parchment"
-                  style={{ fontSize: 16 }}
+                  className="flex-1 bg-transparent focus:outline-none font-sans text-ink placeholder:text-mist"
+                  style={{ fontSize: 15, minWidth: 0 }}
                 />
                 <button
                   type="submit"
                   disabled={!email.trim()}
                   data-testid="button-subscribe"
-                  className="uppercase font-medium font-sans tracking-[0.2em] text-ember disabled:opacity-30 transition-opacity hover:opacity-70 whitespace-nowrap pl-6"
-                  style={{ fontSize: 11 }}
+                  className="font-sans text-paper bg-ink hover:bg-clay disabled:opacity-30 transition-colors duration-200 rounded-pill whitespace-nowrap"
+                  style={{ fontSize: 14, fontWeight: 500, padding: '10px 22px' }}
                 >
-                  Join →
+                  Join &rarr;
                 </button>
               </div>
-              {message && (
-                <p className="mt-3 font-mono text-[12px]" style={{ color: 'rgba(245,240,232,0.4)' }}>
-                  {message}
-                </p>
-              )}
-              <p className="mt-5 font-sans" style={{ fontSize: 12, color: 'rgba(245,240,232,0.3)' }}>
-                Free. No spam. Unsubscribe any time.
-              </p>
             </form>
           </>
         )}
