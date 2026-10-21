@@ -1,3 +1,5 @@
+import { BrandMark } from '@/components/BrandMark';
+
 const SOCIALS = [
   { label: 'Instagram', href: 'https://www.instagram.com/aiwithomi/' },
   { label: 'YouTube', href: 'https://www.youtube.com/@aiwithomi' },
@@ -9,50 +11,25 @@ const SOCIALS = [
 
 export function Footer() {
   return (
-    <footer className="w-full" style={{ borderTop: '1px solid var(--line)' }}>
-      <div className="max-w-[1040px] mx-auto px-6 sm:px-8" style={{ paddingTop: 56, paddingBottom: 48 }}>
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-10">
+    <footer className="site-footer">
+      <div className="shell">
+        <div className="footer-main">
           <div>
-            <a href="/" className="font-sans font-semibold tracking-tight text-ink" style={{ fontSize: 17 }}>
-              AI<span className="text-clay">with</span>Omi
-            </a>
-            <p className="text-muted" style={{ fontSize: 14, lineHeight: 1.6, marginTop: 12, maxWidth: 340 }}>
-              Learning AI in public from Brisbane, Australia.
-              Same notes, wherever you follow.
-            </p>
+            <a href="#top" aria-label="AIwithOmi home"><BrandMark /></a>
+            <p>Learning, testing and explaining AI in public from Brisbane.</p>
           </div>
-
-          <div className="flex flex-wrap gap-x-7 gap-y-3">
-            {SOCIALS.map(s => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-muted hover:text-clay transition-colors duration-200"
-                style={{ fontSize: 14, fontWeight: 500 }}
-              >
-                {s.label}
-              </a>
+          <div className="footer-socials">
+            {SOCIALS.map(social => (
+              <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer">{social.label}</a>
             ))}
           </div>
         </div>
 
-        <div
-          className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
-          style={{ borderTop: '1px solid var(--line-soft)', marginTop: 44, paddingTop: 28 }}
-        >
-          <p className="text-muted" style={{ fontSize: 13, lineHeight: 1.6 }}>
-            Nothing here is medical, clinical or financial advice.
-            &copy; {new Date().getFullYear()} AIwithOmi.
-          </p>
-          <div className="flex gap-6">
-            <a href="/terms" className="font-sans text-muted hover:text-ink transition-colors duration-200" style={{ fontSize: 13 }}>
-              Terms of Service
-            </a>
-            <a href="/privacy" className="font-sans text-muted hover:text-ink transition-colors duration-200" style={{ fontSize: 13 }}>
-              Privacy Policy
-            </a>
+        <div className="footer-bottom">
+          <p>Public education and personal research. Not clinical, legal or financial advice.</p>
+          <div>
+            <a href="/terms">Terms</a>
+            <a href="/privacy">Privacy</a>
           </div>
         </div>
       </div>

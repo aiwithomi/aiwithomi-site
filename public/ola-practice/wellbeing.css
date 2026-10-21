@@ -1,0 +1,86 @@
+:root {
+  color-scheme: light;
+  --ivory: #faf9f5;
+  --ink: #141413;
+  --crail: #c15f3c;
+  --cloud: #e8e6dc;
+  --muted: #6e6a60;
+  --line: #d6cdbb;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+a { color: #9b4124; text-underline-offset: 3px; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: default; opacity: .55; }
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 3px solid var(--crail);
+  outline-offset: 4px;
+}
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding: 20px max(20px, 5vw);
+  border-bottom: 1px solid var(--line);
+}
+.brand { color: var(--ink); font-size: 13px; font-weight: 700; letter-spacing: .15em; text-decoration: none; text-transform: uppercase; }
+.quiet, .status { color: var(--muted); font-size: 14px; }
+main { width: min(820px, 100% - 40px); margin: 0 auto; padding: 42px 0 64px; }
+.eyebrow { margin: 0 0 10px; color: #9b4124; font-size: 13px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+h1, h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -.025em; line-height: 1.15; }
+h1 { margin: 0 0 14px; font-size: clamp(42px, 8vw, 66px); }
+h2 { margin: 0 0 16px; font-size: clamp(29px, 5vw, 38px); }
+h3 { margin: 0 0 10px; font-size: 20px; line-height: 1.35; }
+p { margin: 0 0 16px; }
+.intro { max-width: 680px; color: #514e47; font-size: 19px; }
+.scope { max-width: 680px; padding: 12px 15px; border-left: 3px solid var(--crail); background: var(--cloud); font-size: 15px; }
+.steps { display: flex; gap: 0; margin: 30px 0 0; border-bottom: 1px solid var(--line); }
+.steps button { flex: 1; min-height: 54px; padding: 12px 10px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: var(--muted); text-align: left; }
+.steps button[aria-selected="true"] { border-bottom-color: var(--crail); color: var(--ink); font-weight: 700; }
+.step-status { margin: 12px 0 22px; color: var(--muted); font-size: 14px; }
+.panel { padding: 4px 0 0; }
+.prompt-card, .option-card, .learning-card, .resources { margin: 22px 0; padding: 22px; border: 1px solid var(--line); border-radius: 5px; background: #fffefa; }
+.prompt-label { color: #9b4124; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.prompt-card > p:nth-child(2) { font-family: Georgia, "Times New Roman", serif; font-size: 24px; line-height: 1.35; }
+.option-card ol { margin: 10px 0 14px; padding-left: 24px; }
+.option-card li { padding: 3px 0; }
+.breathing { background: #f5f1e9; }
+.breath-controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+.primary, .secondary { min-height: 46px; padding: 10px 16px; border: 1px solid var(--ink); border-radius: 4px; }
+.primary { margin-top: 6px; background: var(--ink); color: var(--ivory); }
+.secondary { background: transparent; color: var(--ink); }
+.status { min-height: 1.5em; }
+.choice-list { margin: 12px 0 28px; padding-left: 24px; }
+.choice-list li { margin: 8px 0; }
+.learning-card { background: #f5f1e9; }
+.learning-card > p:not(.eyebrow) { max-width: 680px; }
+.recall { margin: 18px 0 0; padding: 16px 0 0; border: 0; border-top: 1px solid var(--line); }
+.recall legend { margin-bottom: 10px; font-weight: 700; }
+.recall label { display: block; margin: 10px 0; }
+.recall input { accent-color: var(--crail); margin-right: 8px; }
+.recall .secondary { margin: 8px 0; }
+.resources ul { margin: 12px 0 0; padding-left: 22px; }
+.resources li { margin: 9px 0; }
+.back-link { display: inline-block; margin: 4px 0 20px; }
+footer { display: flex; justify-content: space-between; gap: 12px; margin-top: 42px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+footer p { margin: 0; }
+[hidden] { display: none !important; }
+@media (max-width: 540px) {
+  main { padding-top: 30px; }
+  .steps button { font-size: 15px; }
+  .prompt-card, .option-card, .learning-card, .resources { padding: 17px; }
+  footer { display: block; }
+  footer p + p { margin-top: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

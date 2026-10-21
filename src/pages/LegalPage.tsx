@@ -4,12 +4,12 @@ type LegalPageProps = {
   type: 'terms' | 'privacy';
 };
 
-const updated = '23 May 2026';
+const updated = '20 September 2026';
 
 const termsSections = [
   {
     title: 'Use of this website',
-    body: 'AIwithOmi is a public education and project website about healthcare AI, data, research, and related digital products. You may view and share public pages for personal, educational, and professional purposes, provided you do not misuse the site or interfere with its operation.',
+    body: 'AIwithOmi is a public education, personal research and content website about practical AI, data, explainability and related digital products. You may view and share public pages for personal, educational, and professional purposes, provided you do not misuse the site or interfere with its operation.',
   },
   {
     title: 'No clinical advice',

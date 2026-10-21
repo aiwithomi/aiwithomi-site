@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">AIwithOmi - Make AI easier to see</title>
+  <desc id="desc">Learning, testing and explaining AI in public.</desc>
+  <rect width="1200" height="630" fill="#141413"/>
+  <text x="78" y="102" fill="#C15F3C" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600" letter-spacing="4">AIWITHOMI / BRISBANE</text>
+  <text x="78" y="305" fill="#FAF9F5" font-family="Georgia, serif" font-size="92" font-weight="700" letter-spacing="-4">Make AI</text>
+  <text x="78" y="408" fill="#D4A27F" font-family="Georgia, serif" font-size="92" font-style="italic" font-weight="400" letter-spacing="-4">easier to see.</text>
+  <text x="80" y="500" fill="#A8A49A" font-family="Arial, Helvetica, sans-serif" font-size="22">Research, real-work tests and useful AI notes.</text>
+  <text x="1060" y="148" fill="#FAF9F5" opacity="0.09" text-anchor="middle" font-family="Georgia, serif" font-size="220" font-weight="700" letter-spacing="-18">A<tspan fill="#D4A27F" font-style="italic" font-weight="400">/</tspan>O</text>
+  <line x1="78" y1="548" x2="1122" y2="548" stroke="#D6CDBB" stroke-opacity="0.35"/>
+</svg>

@@ -1,3 +1,4 @@
-<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="180" height="180" rx="36" fill="#FF3C00"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="AIwithOmi A/O mark">
+  <rect width="180" height="180" rx="36" fill="#FAF9F5"/>
+  <text x="90" y="121" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="92" letter-spacing="-5" fill="#141413">A<tspan fill="#C15F3C" font-weight="400" font-style="italic">/</tspan>O</text>
 </svg>

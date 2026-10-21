@@ -1,74 +1,66 @@
-const ITEMS = [
+const FOCUS = [
   {
-    tag: 'Studying',
-    title: 'One curriculum unit a day',
-    body: 'A self-built 190-unit syllabus, from how computers represent information through to interpretability research. Day counter running. The streak matters more than the pace.',
+    label: 'Practice',
+    title: 'Testing tools against real work',
+    body: 'An AI tool earns its place by surviving a real task. I record the result, the failure modes and the human judgement that remains.',
   },
   {
-    tag: 'Testing',
-    title: 'Tools against real work',
-    body: 'Every tool gets tried on an actual task, not a demo. What I publish is what happened: the time it saved, the mess it made, whether I kept it.',
+    label: 'Research',
+    title: 'Making the black box less black',
+    body: 'Exploring how AI decisions can be made easier to understand, and what an explanation can honestly tell someone who needs to act.',
   },
   {
-    tag: 'Asking',
-    title: 'Why models get things wrong',
-    body: 'The question behind everything here. I recently asked a model to explain a wrong answer and it invented working that contradicted its own conclusion. Understanding that failure is the homework.',
-  },
-  {
-    tag: 'Making',
-    title: 'First videos',
-    body: 'Two series in production: Black Box, on what we can and cannot see inside a model, and Trust Check, on hyped claims versus what actually happened. First one lands soon.',
+    label: 'Accountability',
+    title: 'Showing the working',
+    body: 'Sharing the questions, evidence and corrections alongside practical AI experiments, without claiming more than the work supports.',
   },
 ];
 
 export function Now() {
   return (
-    <section id="now" className="w-full" style={{ background: 'var(--surface)', paddingTop: 'clamp(70px, 10vh, 110px)', paddingBottom: 'clamp(70px, 10vh, 110px)' }}>
-      <div className="max-w-[1040px] mx-auto px-6 sm:px-8">
-        <p className="kicker reveal" style={{ marginBottom: 24 }}>Now</p>
-        <h2
-          className="reveal font-serif text-ink"
-          style={{ fontSize: 'clamp(30px, 4vw, 44px)', fontWeight: 500, lineHeight: 1.15, letterSpacing: '-0.015em', maxWidth: 560, marginBottom: 48 }}
-        >
-          What I&rsquo;m learning right now
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {ITEMS.map((item, i) => (
-            <div
-              key={item.title}
-              className="reveal rounded-lg bg-paper"
-              style={{ border: '1px solid var(--line-soft)', padding: '28px 28px 30px', transitionDelay: `${i * 0.05}s` }}
-            >
-              <span
-                className="font-sans inline-block rounded-pill"
-                style={{
-                  fontSize: 12,
-                  fontWeight: 500,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  color: 'var(--clay)',
-                  background: 'var(--clay-12)',
-                  padding: '4px 12px',
-                  marginBottom: 18,
-                }}
-              >
-                {item.tag}
-              </span>
-              <h3 className="font-serif text-ink" style={{ fontSize: 22, fontWeight: 600, lineHeight: 1.25, marginBottom: 12 }}>
-                {item.title}
-              </h3>
-              <p className="text-muted" style={{ fontSize: 16, lineHeight: 1.65 }}>
-                {item.body}
-              </p>
-            </div>
-          ))}
+    <section id="research" className="section section--cloud">
+      <div className="shell">
+        <div className="section-heading-row reveal">
+          <div>
+            <p className="microlabel">Research in progress</p>
+            <h2>The question underneath the tools.</h2>
+          </div>
+          <p className="heading-aside">Updated as the work changes.<br />No completed result claimed early.</p>
         </div>
 
-        <p className="reveal text-muted" style={{ fontSize: 15, lineHeight: 1.6, marginTop: 36, maxWidth: 620 }}>
-          This section is honest by design: it changes as the learning does,
-          and nothing gets listed here before it exists.
-        </p>
+        <div className="research-grid">
+          <div className="research-statement reveal">
+            <p className="research-question">How can an AI decision become easier to understand and evaluate?</p>
+            <p>
+              That question sits behind the experiments, reading and content here. The aim is not to make a model sound more certain, but to make the limits of its decisions easier to see.
+            </p>
+            <a className="text-link" href="#newsletter">Follow the research log</a>
+          </div>
+
+          <div className="research-card reveal" style={{ transitionDelay: '0.08s' }}>
+            <div className="research-card-topline">
+              <span className="status-dot status-dot--light" aria-hidden="true" />
+              <span className="microlabel microlabel--dark">Current status</span>
+              <span className="research-card-date">Learning in public</span>
+            </div>
+            <h3>Explainable AI</h3>
+            <p className="research-card-status">Current area of interest</p>
+            <div className="research-next">
+              <span className="microlabel microlabel--dark">Next visible step</span>
+              <strong>Test what explanations make clear, and where they fall short.</strong>
+            </div>
+          </div>
+        </div>
+
+        <div className="focus-grid">
+          {FOCUS.map((item, index) => (
+            <article className="focus-card reveal" key={item.title} style={{ transitionDelay: `${index * 0.06}s` }}>
+              <p className="microlabel">{item.label}</p>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

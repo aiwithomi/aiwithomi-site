@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; connect-src 'none'; img-src 'self'; media-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="theme-color" content="#FAF9F5">
+  <title>A small pause | Omi Learns AI</title>
+  <link rel="stylesheet" href="wellbeing.css">
+  <script src="wellbeing-core.js" defer></script>
+  <script src="wellbeing.js" defer></script>
+</head>
+<body>
+  <header>
+    <a class="brand" href="index.html">Omi Learns AI</a>
+    <span class="quiet">Optional · nothing here is saved</span>
+  </header>
+  <main>
+    <p class="eyebrow">A short reset · about two minutes</p>
+    <h1>A small pause.</h1>
+    <p class="intro">Notice what is here, try a grounding option if it suits you,
+      then choose one small next step. Skip anything that does not feel right.</p>
+    <p class="scope">General wellbeing and learning tools. This is not medical
+      care or mental health treatment. Grounding does not make real problems
+      disappear.</p>
+
+    <nav class="steps" role="tablist" aria-label="Pause steps">
+      <button id="tab-notice" type="button" role="tab" aria-selected="true"
+        aria-controls="panel-notice" tabindex="0" data-step="0">1 · Notice</button>
+      <button id="tab-ground" type="button" role="tab" aria-selected="false"
+        aria-controls="panel-ground" tabindex="-1" data-step="1">2 · Ground</button>
+      <button id="tab-choose" type="button" role="tab" aria-selected="false"
+        aria-controls="panel-choose" tabindex="-1" data-step="2">3 · Choose</button>
+    </nav>
+    <p id="step-status" class="step-status" aria-live="polite">Step 1 of 3 · Notice</p>
+
+    <section id="panel-notice" class="panel" role="tabpanel"
+      aria-labelledby="tab-notice" data-panel="0">
+      <h2>What is here right now?</h2>
+      <p>A thought may be a prediction, not proof. You do not have to settle
+        everything in this moment.</p>
+      <div class="prompt-card">
+        <p class="prompt-label">A quiet check-in</p>
+        <p>What do I know right now? What am I guessing might happen?</p>
+        <p class="quiet">You can answer privately in your own mind. Nothing is
+          recorded.</p>
+      </div>
+      <button class="primary next-step" type="button" data-go="1">Continue to Ground</button>
+    </section>
+
+    <section id="panel-ground" class="panel" role="tabpanel"
+      aria-labelledby="tab-ground" data-panel="1" hidden>
+      <h2>Choose one way to ground.</h2>
+      <p>Try a sensory prompt, or skip to the next step. There is no right way
+        to do this.</p>
+      <article class="option-card">
+        <h3>Notice your surroundings</h3>
+        <ol>
+          <li>Name three things you can see.</li>
+          <li>Notice two sounds, near or far.</li>
+          <li>Feel one comfortable point of contact, like your feet on the floor.</li>
+        </ol>
+        <p class="quiet">If a sense feels uncomfortable, leave it out.</p>
+      </article>
+      <article class="option-card breathing" aria-labelledby="breath-title">
+        <h3 id="breath-title">Or try one gentle breath cycle</h3>
+        <p>Only if breathing focus feels comfortable. Breathe in gently for a
+          few seconds, then breathe out easily. No holds, no need to match the
+          timer, and stop whenever you want.</p>
+        <div class="breath-controls">
+          <button id="breath-start" class="secondary" type="button">Start one optional cycle</button>
+          <button id="breath-pause" class="secondary" type="button" disabled>Pause</button>
+          <button id="breath-stop" class="secondary" type="button" disabled>Stop</button>
+        </div>
+        <p id="breath-status" class="status" role="status" aria-live="polite">
+          Not started. Sensory grounding is another option.
+        </p>
+      </article>
+      <button class="primary next-step" type="button" data-go="2">Continue to Choose</button>
+    </section>
+
+    <section id="panel-choose" class="panel" role="tabpanel"
+      aria-labelledby="tab-choose" data-panel="2" hidden>
+      <h2>Choose one small next step.</h2>
+      <p>Pick what fits the moment. You can also choose to do nothing for now.</p>
+      <ul class="choice-list">
+        <li>Take a short pause and return when ready.</li>
+        <li>Do one small part of the task.</li>
+        <li>Ask a person you trust for practical support.</li>
+      </ul>
+
+      <article class="learning-card" aria-labelledby="learning-title">
+        <p class="eyebrow">One-minute learning</p>
+        <h3 id="learning-title">A prediction is not a fact.</h3>
+        <p id="learning-chunk">A prediction describes what might happen.
+          Evidence helps us check what is known. Grounding can help you notice
+          this moment, but it cannot decide whether a real problem needs action.</p>
+        <div class="breath-controls">
+          <button id="read-aloud" class="secondary" type="button">Read this chunk aloud</button>
+          <button id="stop-reading" class="secondary" type="button" disabled>Stop reading</button>
+        </div>
+        <p id="read-status" class="status" role="status" aria-live="polite">
+          Read-aloud is available only when your browser identifies a voice as
+          device-local. Otherwise the text stays available to read here.
+        </p>
+        <fieldset class="recall">
+          <legend>Quick recall: what is a prediction?</legend>
+          <label><input type="radio" name="recall" value="maybe"> Something that might happen</label>
+          <label><input type="radio" name="recall" value="certain"> Proof that something will happen</label>
+          <button id="check-recall" class="secondary" type="button">Check my answer</button>
+          <p id="recall-status" class="status" role="status" aria-live="polite"></p>
+        </fieldset>
+      </article>
+
+      <aside class="resources" aria-labelledby="resources-title">
+        <h3 id="resources-title">Public resources</h3>
+        <p>Each link opens the original source in a new tab. Nothing is copied into this page.</p>
+        <ul>
+          <li><a href="https://www.beyondblue.org.au/mental-health/wellbeing/relaxation-exercises" target="_blank" rel="noopener noreferrer">Beyond Blue: relaxation exercises</a></li>
+          <li><a href="https://www.who.int/publications/i/item/9789240003927" target="_blank" rel="noopener noreferrer">World Health Organization: Doing What Matters in Times of Stress</a></li>
+          <li><a href="https://www.flexiblemindtherapy.com/uploads/6/5/5/2/65520823/five_senses_mindfulness_exercise.pdf" target="_blank" rel="noopener noreferrer">Five-senses exercise PDF from Flexible Mind Therapy</a></li>
+        </ul>
+      </aside>
+      <a class="back-link" href="index.html">Back to the T003 Python practice</a>
+    </section>
+
+    <footer>
+      <p>No entries are collected or saved, and this page makes no app network
+        requests. Read-aloud is offered only for a voice the browser reports as
+        device-local. External resource links open their source sites in a new tab.</p>
+      <p><a href="https://aiwithomi.com" target="_blank" rel="noopener noreferrer">AIwithOmi</a></p>
+    </footer>
+  </main>
+</body>
+</html>

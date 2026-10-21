@@ -1,47 +1,54 @@
 import { useEffect } from 'react';
-import { Nav } from '@/components/Nav';
-import { Hero } from '@/components/Hero';
-import { About } from '@/components/About';
-import { Now } from '@/components/Now';
-import { Newsletter } from '@/components/Newsletter';
-import { Footer } from '@/components/Footer';
-import { LegalPage } from '@/pages/LegalPage';
 import { Route, Switch } from 'wouter';
+import { About } from '@/components/About';
+import { Footer } from '@/components/Footer';
+import { Hero } from '@/components/Hero';
+import { Nav } from '@/components/Nav';
+import { Newsletter } from '@/components/Newsletter';
+import { Notes } from '@/components/Notes';
+import { Now } from '@/components/Now';
+import { Pathways } from '@/components/Pathways';
+import { Resources } from '@/components/Resources';
+import { LegalPage } from '@/pages/LegalPage';
 
 function Site() {
   useEffect(() => {
-    const els = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(
+    const elements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
       entries => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            e.target.classList.add('in');
-            io.unobserve(e.target);
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            observer.unobserve(entry.target);
           }
         }
       },
       { rootMargin: '0px 0px -10% 0px' },
     );
-    els.forEach(el => io.observe(el));
-    // Content must never stay hidden if the observer misses (prerender,
-    // crawlers, odd embedders): reveal everything shortly after load.
+
+    elements.forEach(element => observer.observe(element));
     const failsafe = window.setTimeout(() => {
-      els.forEach(el => el.classList.add('in'));
-      io.disconnect();
+      elements.forEach(element => element.classList.add('in'));
+      observer.disconnect();
     }, 1800);
+
     return () => {
       window.clearTimeout(failsafe);
-      io.disconnect();
+      observer.disconnect();
     };
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-paper text-ink font-serif" style={{ WebkitFontSmoothing: 'antialiased' } as React.CSSProperties}>
+    <div className="site-shell">
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <Nav />
-      <main>
+      <main id="main-content">
         <Hero />
-        <About />
+        <Pathways />
         <Now />
+        <Notes />
+        <Resources />
+        <About />
         <Newsletter />
       </main>
       <Footer />
@@ -53,19 +60,13 @@ function App() {
   return (
     <Switch>
       <Route path="/terms">
-        <div className="page-transition">
-          <LegalPage type="terms" />
-        </div>
+        <div className="page-transition"><LegalPage type="terms" /></div>
       </Route>
       <Route path="/privacy">
-        <div className="page-transition">
-          <LegalPage type="privacy" />
-        </div>
+        <div className="page-transition"><LegalPage type="privacy" /></div>
       </Route>
       <Route>
-        <div className="page-transition">
-          <Site />
-        </div>
+        <div className="page-transition"><Site /></div>
       </Route>
     </Switch>
   );
